@@ -1,23 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle } from 'lucide-react';
+import { TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle } from 'lucide-react';
+import Navbar from '../components/Navbar';
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
+      <Navbar />
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg">
-              <img src="/assets/logo.png" alt="Datoad" className="w-14 h-14 rounded-xl" onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }} />
-              <Zap className="w-8 h-8 text-white" style={{display: 'none'}} />
-            </div>
-            <h1 className="text-5xl font-bold text-slate-900">Datoad</h1>
-          </div>
 
           <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
             Cut Your LLM API Costs<br />

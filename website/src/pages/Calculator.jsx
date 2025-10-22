@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { DollarSign, TrendingDown, Zap, PieChart, Info, CheckCircle, Users } from 'lucide-react';
+import { DollarSign, TrendingDown, Zap, PieChart, Info, CheckCircle } from 'lucide-react';
+import Navbar from '../components/Navbar';
 
 export default function DatoadCalculator() {
   const [monthlySpend, setMonthlySpend] = useState(50000);
@@ -111,14 +112,11 @@ export default function DatoadCalculator() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <Navbar />
+      <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
         <div className="text-center mb-6">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <Zap className="w-8 h-8 text-blue-600" />
-            <h1 className="text-4xl font-bold text-slate-900">Datoad</h1>
-          </div>
           <p className="text-slate-600 text-lg">LLM Cost Savings Calculator</p>
           <p className="text-xs text-slate-500 mt-2">Powered by OpenAI, Anthropic, and Mistral integrations</p>
         </div>
@@ -435,14 +433,20 @@ export default function DatoadCalculator() {
               <p className="text-slate-300 text-sm mb-4">30-day pilot · No commitment · No upfront cost</p>
 
               <div className="space-y-3">
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full">
+                <a
+                  href="mailto:diegocastellanos@datoad.dev?subject=15min%20Intro%20Call%20Request&body=Hi%20Diego%2C%0A%0AI'd%20like%20to%20schedule%20a%2015-minute%20intro%20call%20to%20learn%20more%20about%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%20%0ABest%20time%20to%20chat%3A%0A%0AThanks!"
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full block text-center"
+                >
                   Schedule 15min Intro Call
-                </button>
+                </a>
 
-                <button className="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full flex items-center justify-center gap-2">
+                <a
+                  href="mailto:diegocastellanos@datoad.dev?subject=30-Day%20Pilot%20Program%20Request&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%20%0AMain%20use%20cases%3A%0ABest%20time%20to%20chat%3A%0A%0AThanks!"
+                  className="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full flex items-center justify-center gap-2"
+                >
                   <PieChart className="w-4 h-4" />
                   Run a free 30-day pilot — see your savings live
-                </button>
+                </a>
               </div>
 
               {/* Early Adopter CTA */}

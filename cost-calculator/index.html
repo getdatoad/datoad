@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Costos - Datoad</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Ahorros Datoad</h1>
+            <p class="subtitle">Descubre cuánto puedes ahorrar en tus costos de LLM APIs</p>
+        </header>
+
+        <main>
+            <section class="calculator-form">
+                <h2>Tus Datos Actuales</h2>
+
+                <div class="form-group">
+                    <label for="monthly-spend">Gasto mensual actual en LLM APIs (USD)</label>
+                    <input type="number" id="monthly-spend" placeholder="50000" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Distribución de tus consultas:</label>
+
+                    <div class="slider-group">
+                        <label for="simple-queries">Consultas Simples (%)</label>
+                        <input type="range" id="simple-queries" min="0" max="100" value="40">
+                        <span class="slider-value" id="simple-value">40%</span>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="medium-queries">Consultas Medias (%)</label>
+                        <input type="range" id="medium-queries" min="0" max="100" value="40">
+                        <span class="slider-value" id="medium-value">40%</span>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="complex-queries">Consultas Complejas (%)</label>
+                        <input type="range" id="complex-queries" min="0" max="100" value="20">
+                        <span class="slider-value" id="complex-value">20%</span>
+                    </div>
+                </div>
+
+                <button id="calculate-btn" class="calculate-btn">Calcular Ahorro</button>
+            </section>
+
+            <section class="results" id="results" style="display: none;">
+                <h2>Tu Ahorro Estimado</h2>
+
+                <div class="savings-card">
+                    <div class="savings-amount">
+                        <span class="amount" id="savings-amount">$0</span>
+                        <span class="period">/mes</span>
+                    </div>
+                    <div class="savings-percentage" id="savings-percentage">0% de ahorro</div>
+                </div>
+
+                <div class="comparison">
+                    <div class="cost-box current">
+                        <h3>Costo Actual</h3>
+                        <p class="amount" id="current-cost">$0</p>
+                    </div>
+                    <div class="cost-box projected">
+                        <h3>Con Datoad</h3>
+                        <p class="amount" id="projected-cost">$0</p>
+                    </div>
+                </div>
+
+                <div class="annual-savings">
+                    <p>Ahorro anual proyectado: <strong id="annual-savings">$0</strong></p>
+                </div>
+
+                <div class="cta">
+                    <p>¿Listo para optimizar tus costos de LLM?</p>
+                    <a href="mailto:diegocastellanos@datoad.dev" class="cta-button">Solicitar Demo</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Datoad - Intelligent API routing that cuts your LLM costs 30-45%</p>
+            <p><a href="https://datoad.dev">datoad.dev</a></p>
+        </footer>
+    </div>
+
+    <script src="js/calculator.js"></script>
+</body>
+</html>

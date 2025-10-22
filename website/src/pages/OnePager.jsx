@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 import './OnePager.css';
 
 export default function OnePager() {
   return (
-    <div className="onepager-container">
+    <>
+      <Navbar />
+      <div className="onepager-container">
       {/* BLOCK 1: HEADER */}
       <div className="header">
         <div className="logo">
@@ -306,5 +309,6 @@ export default function OnePager() {
         </p>
       </div>
     </div>
+    </>
   );
 }

@@ -1,28 +1,35 @@
-# One Pager - Datoad
+# One Pager
 
-Este directorio contiene el one pager de Datoad.
+This directory contains Datoad's one pager documentation.
 
-## Contenido
+## 📄 Files
 
-El one pager incluye:
-- Propuesta de valor
-- Beneficios clave
-- Casos de uso
-- Información de contacto
+- **one-pager.md** - Complete Datoad one pager in Markdown format
+- Perfect for sharing, editing, and viewing
+- Includes all product information, pricing, and contact details
 
-## Formato
+## 🌐 Web Version
 
-Puedes subir el one pager en cualquiera de estos formatos:
-- PDF (`.pdf`)
-- PowerPoint/Keynote (`.pptx`, `.key`)
-- Markdown (`.md`)
-- Imágenes (`.png`, `.jpg`)
+The one pager is also available as an interactive web page:
+- Navigate to `/onepager` on the website
+- Full React component with styling
+- See `website/src/pages/OnePager.jsx`
 
-## Sugerencias
+## 📤 Sharing
 
-Elementos recomendados para incluir:
-1. **Problema**: ¿Qué problema resuelve Datoad?
-2. **Solución**: Enrutamiento inteligente de APIs de LLM
-3. **Beneficio principal**: Ahorro del 30-45% en costos
-4. **Público objetivo**: Equipos de analytics con gasto $50k+/mes
-5. **Llamado a la acción**: Contacto o demo
+The Markdown version (`one-pager.md`) is ideal for:
+- Email attachments
+- Converting to PDF
+- GitHub/GitLab viewing
+- Quick editing
+- Version control
+
+## 🔗 Quick Links
+
+- **Website**: [datoad.dev](https://datoad.dev)
+- **Calculator**: [datoad.dev/calculator](https://datoad.dev/calculator)
+- **Email**: diegocastellanos@datoad.dev
+
+---
+
+© 2025 Datoad, Inc. All rights reserved.

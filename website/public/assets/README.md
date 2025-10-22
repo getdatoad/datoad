@@ -1,43 +1,37 @@
 # Assets Folder
 
-Esta carpeta contiene todos los assets estáticos del sitio web de Datoad.
+This folder contains all static assets for the Datoad website.
 
-## 📁 Estructura
+## 📁 Structure
 
 ```
 assets/
-├── logo.png              # Logo principal de Datoad (recomendado: 512x512px)
-├── logo-icon.png         # Icono del logo (recomendado: 64x64px)
-├── images/               # Otras imágenes del sitio
+├── logo.png              # Main Datoad logo
+├── logo-icon.png         # Logo icon (optional)
+├── images/               # Other site images
 │   ├── screenshots/
 │   ├── features/
 │   └── team/
-└── README.md            # Este archivo
+└── README.md            # This file
 ```
 
-## 🎨 Especificaciones del Logo
+## 🎨 Logo Specifications
 
-### Logo Principal (`logo.png`)
-- **Tamaño recomendado**: 512x512px (o mayor)
-- **Formato**: PNG con transparencia
-- **Uso**: Header, landing page, footer
-- **Relación de aspecto**: Cuadrado (1:1)
+### Main Logo (`logo.png`)
+- **Recommended size**: 512x512px (or larger)
+- **Format**: PNG with transparency
+- **Usage**: Header, landing page, footer
+- **Aspect ratio**: Square (1:1)
 
-### Logo Icono (`logo-icon.png`)
-- **Tamaño recomendado**: 64x64px o 128x128px
-- **Formato**: PNG con transparencia
-- **Uso**: Navbar, favicon, one pager
-- **Relación de aspecto**: Cuadrado (1:1)
+### Logo Icon (`logo-icon.png`)
+- **Recommended size**: 64x64px or 128x128px
+- **Format**: PNG with transparency
+- **Usage**: Navbar, favicon, one pager
+- **Aspect ratio**: Square (1:1)
 
-## 📂 Cómo agregar tu logo
+## 🖼️ Adding More Images
 
-1. **Coloca tu logo aquí**: Copia tu archivo `logo.png` en esta carpeta
-2. **Logo icono (opcional)**: Si tienes una versión icono, nómbrala `logo-icon.png`
-3. **Sin cambios de código necesarios**: Las páginas ya están configuradas para usar `/assets/logo.png`
-
-## 🖼️ Otras Imágenes
-
-Puedes agregar más imágenes organizadas en subcarpetas:
+You can add more images organized in subfolders:
 
 ```bash
 assets/
@@ -47,15 +41,15 @@ assets/
     team/team-photo.jpg
 ```
 
-Para usarlas en tus componentes:
+To use them in your components:
 
 ```jsx
 <img src="/assets/images/screenshots/dashboard.png" alt="Dashboard" />
 ```
 
-## 🎨 Colores de Marca (referencia)
+## 🎨 Brand Colors (reference)
 
-Basado en el diseño actual:
+Based on current design:
 
 - **Primary Teal**: `#2B8A8A`
 - **Dark Teal**: `#1E5959`
@@ -65,15 +59,15 @@ Basado en el diseño actual:
 
 ## ✅ Fallback
 
-Si no se encuentra el logo, las páginas mostrarán un ícono de Zap (⚡) como fallback automático.
+If the logo is not found, pages will automatically display a Zap icon (⚡) as fallback.
 
-## 📝 Notas
+## 📝 Notes
 
-- Todos los archivos en `public/` son servidos directamente
-- No necesitas importarlos en los componentes
-- Usa rutas absolutas: `/assets/...`
-- Optimiza las imágenes antes de subirlas (usa herramientas como TinyPNG)
+- All files in `public/` are served directly
+- No need to import them in components
+- Use absolute paths: `/assets/...`
+- Optimize images before uploading (use tools like TinyPNG)
 
 ---
 
-**¿Necesitas ayuda?** Contacta a diegocastellanos@datoad.dev
+**Need help?** Contact diegocastellanos@datoad.dev

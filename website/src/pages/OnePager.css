@@ -626,3 +626,15 @@
     flex-direction: column;
   }
 }
+
+/* Print/Share specific styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .onepager-container {
+    max-width: 100%;
+    padding: 0.25in;
+  }
+}

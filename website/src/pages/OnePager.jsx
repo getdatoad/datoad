@@ -8,6 +8,31 @@ export default function OnePager() {
     <>
       <Navbar />
       <div className="onepager-container">
+      {/* Print/Share Buttons */}
+      <div className="no-print" style={{
+        position: 'sticky',
+        top: '80px',
+        right: '20px',
+        float: 'right',
+        zIndex: 40,
+        display: 'flex',
+        gap: '10px',
+        marginBottom: '-50px'
+      }}>
+        <button
+          onClick={() => window.print()}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transition-all flex items-center gap-2"
+        >
+          📄 Print / Save PDF
+        </button>
+        <a
+          href="mailto:?subject=Check%20out%20Datoad%20-%20LLM%20Cost%20Optimization&body=Hi%2C%0A%0AI%20wanted%20to%20share%20this%20with%20you%3A%20Datoad%20can%20cut%20LLM%20API%20costs%20by%2030-45%25.%0A%0ACheck%20it%20out%3A%20https%3A%2F%2Fdatoad.dev%2Fonepager%0A%0ABest%2C"
+          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transition-all flex items-center gap-2"
+        >
+          ✉️ Share via Email
+        </a>
+      </div>
+
       {/* BLOCK 1: HEADER */}
       <div className="header">
         <div className="logo">
@@ -255,13 +280,13 @@ export default function OnePager() {
               Calculate your savings →
             </Link>
             <a
-              href="mailto:diegocastellanos@datoad.dev?subject=Pilot%20Program%20Interest&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20learning%20more%20about%20Datoad's%20pilot%20program.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%0ABest%20time%20to%20chat%3A%0A%0AThanks!"
+              href="mailto:diegocastellanos@datoad.dev?subject=I'm%20interested%20in%20the%20pilot%20program&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%0AMain%20use%20cases%3A%0ABest%20time%20to%20chat%3A%0A%0AThanks!"
               className="cta-button secondary"
             >
               Request pilot access →
             </a>
             <a
-              href="mailto:diegocastellanos@datoad.dev?subject=Demo%20Request&body=Hi%20Diego%2C%0A%0AI'd%20like%20to%20schedule%20a%20demo%20of%20Datoad.%0A%0ACompany%3A%0ARole%3A%0APreferred%20date/time%3A%0A%0AThanks!"
+              href="mailto:diegocastellanos@datoad.dev?subject=I'd%20like%20to%20schedule%20a%20demo&body=Hi%20Diego%2C%0A%0AI'd%20like%20to%20schedule%20a%20demo%20of%20Datoad.%0A%0ACompany%3A%0ARole%3A%0APreferred%20date/time%3A%0A%0AThanks!"
               className="cta-button secondary"
             >
               Book a demo →

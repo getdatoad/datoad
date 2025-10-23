@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { DollarSign, TrendingDown, Zap, PieChart, Info, CheckCircle } from 'lucide-react';
+import { DollarSign, TrendingDown, Zap, PieChart, Info, CheckCircle, Download } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 export default function DatoadCalculator() {
@@ -204,9 +204,21 @@ export default function DatoadCalculator() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <Navbar />
-      <div className="max-w-6xl mx-auto p-6">
+    <>
+      <style>{`
+        @media print {
+          .no-print { display: none !important; }
+          body { background: white !important; }
+          .max-w-6xl { max-width: 100% !important; }
+          nav { display: none !important; }
+          button { display: none !important; }
+          input[type="text"] { border: 1px solid #ccc !important; }
+          @page { margin: 0.5in; }
+        }
+      `}</style>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        <Navbar />
+        <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
         <div className="text-center mb-6">
           <p className="text-slate-600 text-lg">LLM Cost Savings Calculator</p>
@@ -410,6 +422,15 @@ export default function DatoadCalculator() {
 
           {/* Results Panel */}
           <div className="space-y-6">
+            {/* Export PDF Button */}
+            <button
+              onClick={() => window.print()}
+              className="w-full flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-700 font-semibold px-4 py-3 rounded-lg border-2 border-slate-300 transition-colors no-print"
+            >
+              <Download className="w-5 h-5" />
+              Export Report as PDF
+            </button>
+
             {/* Main Savings Card */}
             <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 text-white">
               <div className="flex items-center gap-2 mb-4">
@@ -810,5 +831,6 @@ export default function DatoadCalculator() {
         </div>
       </div>
     </div>
+    </>
   );
 }

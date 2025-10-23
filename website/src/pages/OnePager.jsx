@@ -8,31 +8,6 @@ export default function OnePager() {
     <>
       <Navbar />
       <div className="onepager-container">
-      {/* Print/Share Buttons */}
-      <div className="no-print" style={{
-        position: 'sticky',
-        top: '80px',
-        right: '20px',
-        float: 'right',
-        zIndex: 40,
-        display: 'flex',
-        gap: '10px',
-        marginBottom: '-50px'
-      }}>
-        <button
-          onClick={() => window.print()}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transition-all flex items-center gap-2"
-        >
-          📄 Print / Save PDF
-        </button>
-        <a
-          href="mailto:?subject=Check%20out%20Datoad%20-%20LLM%20Cost%20Optimization&body=Hi%2C%0A%0AI%20wanted%20to%20share%20this%20with%20you%3A%20Datoad%20can%20cut%20LLM%20API%20costs%20by%2030-45%25.%0A%0ACheck%20it%20out%3A%20https%3A%2F%2Fdatoad.dev%2Fonepager%0A%0ABest%2C"
-          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transition-all flex items-center gap-2"
-        >
-          ✉️ Share via Email
-        </a>
-      </div>
-
       {/* BLOCK 1: HEADER */}
       <div className="header">
         <div className="logo">
@@ -297,6 +272,34 @@ export default function OnePager() {
             <div className="qr-code">📱 QR Code</div>
             <div className="qr-caption">Quick calculator access</div>
           </div>
+        </div>
+      </div>
+
+      {/* Print/Share Section */}
+      <div className="no-print" style={{
+        textAlign: 'center',
+        padding: '32px',
+        background: 'linear-gradient(135deg, #F0F9FF 0%, #FFFFFF 100%)',
+        borderRadius: '12px',
+        marginBottom: '24px'
+      }}>
+        <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#1E293B', marginBottom: '16px' }}>
+          Share or Download
+        </h3>
+        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button
+            onClick={() => window.print()}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all"
+          >
+            📄 Print / Save as PDF
+          </button>
+          <a
+            href="mailto:?subject=Check%20out%20Datoad%20-%20LLM%20Cost%20Optimization&body=Hi%2C%0A%0AI%20wanted%20to%20share%20this%20with%20you%3A%20Datoad%20can%20cut%20LLM%20API%20costs%20by%2030-45%25.%0A%0ACheck%20it%20out%3A%20https%3A%2F%2Fdatoad.dev%2Fonepager%0A%0ABest%2C"
+            className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all inline-block"
+            style={{ textDecoration: 'none' }}
+          >
+            ✉️ Share via Email
+          </a>
         </div>
       </div>
 

@@ -117,6 +117,40 @@ export default function OnePager() {
 
           {/* RIGHT COLUMN */}
           <div className="right-column">
+            {/* KEY METRICS TABLE */}
+            <div className="metrics-table-block compact">
+              <h2 style={{ fontSize: '14px', marginBottom: '12px', textAlign: 'center', color: '#1E3A4C' }}>📊 Key Metrics</h2>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '10px' }}>
+                <thead>
+                  <tr style={{ background: '#4A9B9B', color: 'white' }}>
+                    <th style={{ padding: '8px', textAlign: 'left', borderRadius: '4px 0 0 0' }}>Metric</th>
+                    <th style={{ padding: '8px', textAlign: 'right', borderRadius: '0 4px 0 0' }}>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ background: '#F5F3EE' }}>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #E5E5E5' }}>Avg Cost Reduction</td>
+                    <td style={{ padding: '8px', textAlign: 'right', fontWeight: 'bold', color: '#4A9B9B', borderBottom: '1px solid #E5E5E5' }}>38%</td>
+                  </tr>
+                  <tr style={{ background: 'white' }}>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #E5E5E5' }}>ROI</td>
+                    <td style={{ padding: '8px', textAlign: 'right', fontWeight: 'bold', color: '#4A9B9B', borderBottom: '1px solid #E5E5E5' }}>5.7×</td>
+                  </tr>
+                  <tr style={{ background: '#F5F3EE' }}>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #E5E5E5' }}>Models Supported</td>
+                    <td style={{ padding: '8px', textAlign: 'right', fontWeight: 'bold', color: '#1E3A4C', borderBottom: '1px solid #E5E5E5' }}>7+</td>
+                  </tr>
+                  <tr style={{ background: 'white' }}>
+                    <td style={{ padding: '8px', borderBottom: '1px solid #E5E5E5' }}>Setup Time</td>
+                    <td style={{ padding: '8px', textAlign: 'right', fontWeight: 'bold', color: '#1E3A4C', borderBottom: '1px solid #E5E5E5' }}>&lt; 10 min</td>
+                  </tr>
+                  <tr style={{ background: '#F5F3EE' }}>
+                    <td style={{ padding: '8px', borderRadius: '0 0 0 4px' }}>Code Changes</td>
+                    <td style={{ padding: '8px', textAlign: 'right', fontWeight: 'bold', color: '#16A34A', borderRadius: '0 0 4px 0' }}>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             {/* SAVINGS DASHBOARD */}
             <div className="hero-block compact">
               <h2>Your Savings Projection</h2>
@@ -248,9 +282,20 @@ export default function OnePager() {
               </div>
             </div>
             <div className="footer-right">
-              <p className="contact-info">
-                <strong>Contact:</strong> <a href="mailto:diegocastellanos@datoad.dev">diegocastellanos@datoad.dev</a>
+              <p className="contact-info" style={{ marginBottom: '8px' }}>
+                <strong>Ready to pilot?</strong><br />
+                Contact: <a href="mailto:diegocastellanos@datoad.dev">diegocastellanos@datoad.dev</a>
               </p>
+
+              <div style={{ marginBottom: '10px', fontSize: '9px' }}>
+                <a href="https://x.com/getdatoad" target="_blank" rel="noopener noreferrer" style={{ marginRight: '12px', color: '#4A9B9B', textDecoration: 'none' }}>
+                  𝕏 Twitter
+                </a>
+                <a href="https://www.linkedin.com/company/datoad/" target="_blank" rel="noopener noreferrer" style={{ color: '#4A9B9B', textDecoration: 'none' }}>
+                  in LinkedIn
+                </a>
+              </div>
+
               <div className="provider-logos compact">
                 <span>OpenAI</span>
                 <span>Anthropic</span>

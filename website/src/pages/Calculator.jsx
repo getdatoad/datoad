@@ -5,9 +5,12 @@ import Navbar from '../components/Navbar';
 export default function DatoadCalculator() {
   const [monthlySpend, setMonthlySpend] = useState('');
   const [currentMix, setCurrentMix] = useState({
-    'gpt-4': 40,
-    'gpt-3.5': 50,
-    'claude': 10
+    'gpt-4': 25,
+    'gpt-3.5': 30,
+    'claude': 15,
+    'gemini': 15,
+    'mistral': 10,
+    'deepseek': 5
   });
   const [workload, setWorkload] = useState({
     simple_qa: 30,
@@ -22,10 +25,14 @@ export default function DatoadCalculator() {
     const spend = Number(monthlySpend) || 0;
 
     // Model cost multipliers (relative to GPT-4 = 1.0)
+    // Based on average market pricing for input tokens
     const modelCosts = {
-      'gpt-4': 1.0,
-      'claude': 0.8,
-      'gpt-3.5': 0.15
+      'gpt-4': 1.0,      // $30 per 1M tokens (baseline)
+      'claude': 0.8,     // ~$24 per 1M tokens
+      'gpt-3.5': 0.15,   // ~$4.50 per 1M tokens
+      'gemini': 0.35,    // ~$10.50 per 1M tokens
+      'mistral': 0.25,   // ~$7.50 per 1M tokens
+      'deepseek': 0.05   // ~$1.50 per 1M tokens
     };
 
     // Calculate baseline cost adjusted by current model mix
@@ -56,9 +63,12 @@ export default function DatoadCalculator() {
     const roi = datoadFee > 0 ? netBenefit / datoadFee : 0;
 
     const optimizedMix = {
-      'gpt-4': 20,
-      'mistral': 45,
-      'gpt-3.5': 35
+      'gpt-4': 15,
+      'claude': 10,
+      'gemini': 15,
+      'mistral': 25,
+      'gpt-3.5': 20,
+      'deepseek': 15
     };
 
     const beforeDistribution = {
@@ -133,7 +143,7 @@ export default function DatoadCalculator() {
         {/* Header */}
         <div className="text-center mb-6">
           <p className="text-slate-600 text-lg">LLM Cost Savings Calculator</p>
-          <p className="text-xs text-slate-500 mt-2">Powered by OpenAI, Anthropic, and Mistral integrations</p>
+          <p className="text-xs text-slate-500 mt-2">Supporting OpenAI, Anthropic, Google, Mistral, and DeepSeek models</p>
         </div>
 
         {/* Sticky Input Summary */}
@@ -435,10 +445,10 @@ export default function DatoadCalculator() {
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <div className="text-xs font-semibold text-blue-900 mb-2">Routing Strategy:</div>
                 <ul className="text-xs text-blue-800 space-y-1">
-                  <li>• Simple QA → GPT-3.5 or Mistral (60% cheaper)</li>
-                  <li>• SQL/Analytics → Mistral (70% cheaper than GPT-4)</li>
-                  <li>• Complex reasoning → Stays on GPT-4 (quality first)</li>
-                  <li>• Doc summarization → GPT-3.5 (60% cheaper)</li>
+                  <li>• Simple QA → DeepSeek, GPT-3.5, or Mistral (70-95% cheaper)</li>
+                  <li>• SQL/Analytics → Mistral or Gemini (65-75% cheaper than GPT-4)</li>
+                  <li>• Complex reasoning → GPT-4 or Claude (quality first)</li>
+                  <li>• Doc summarization → GPT-3.5 or Gemini (60-85% cheaper)</li>
                 </ul>
               </div>
             </div>

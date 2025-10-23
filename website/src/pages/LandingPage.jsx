@@ -98,7 +98,7 @@ export default function LandingPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center border border-[#4A9B9B]/20">
             <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] mb-2">
               30-45%
@@ -116,6 +116,61 @@ export default function LandingPage() {
               $265k+
             </div>
             <div className="text-slate-600 font-medium">Annual Savings (avg)</div>
+          </div>
+        </div>
+
+        {/* Integrations & Trust Layer */}
+        <div className="mb-24">
+          <h3 className="text-center text-sm font-semibold text-slate-500 uppercase tracking-wide mb-8">
+            Works with all major LLM providers
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center max-w-4xl mx-auto">
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">🤖</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">OpenAI</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">⚡</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">Anthropic</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">🔷</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">Google</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">☁️</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">AWS</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">🔵</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">Azure</span>
+            </div>
+          </div>
+
+          {/* Security Badges */}
+          <div className="flex justify-center gap-6 mt-12">
+            <div className="flex items-center gap-2 text-slate-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+              <span className="text-lg">🔒</span>
+              <span className="text-xs font-semibold">SOC2 Type II<br />in progress</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+              <span className="text-lg">🛡️</span>
+              <span className="text-xs font-semibold">GDPR/CCPA<br />compliant</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+              <span className="text-lg">🔐</span>
+              <span className="text-xs font-semibold">Zero data<br />retention</span>
+            </div>
           </div>
         </div>
 
@@ -273,7 +328,7 @@ export default function LandingPage() {
         </div>
 
         {/* Flow Animation */}
-        <div className="mb-20">
+        <div className="mb-24">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A4C] mb-4">
             How Datoad Works
           </h2>
@@ -285,7 +340,7 @@ export default function LandingPage() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
               {/* Your App */}
               <div className="flex-1 max-w-[200px]">
-                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300 hover:shadow-lg transition-shadow">
                   <div className="text-4xl mb-2">💻</div>
                   <div className="font-bold text-slate-900 mb-1">Your App</div>
                   <div className="text-xs text-slate-600">Makes LLM request</div>
@@ -304,8 +359,9 @@ export default function LandingPage() {
               <div className="flex-1 max-w-[200px]">
                 <div className="bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-xl p-6 text-center border-2 border-[#4A9B9B] shadow-lg transform hover:scale-105 transition-transform">
                   <div className="text-4xl mb-2">🧠</div>
-                  <div className="font-bold text-white mb-1">Datoad</div>
+                  <div className="font-bold text-white mb-1">Datoad Router</div>
                   <div className="text-xs text-white/90">Analyzes & routes</div>
+                  <div className="text-[10px] text-white/75 mt-1">Zero latency added</div>
                 </div>
               </div>
 
@@ -319,10 +375,10 @@ export default function LandingPage() {
 
               {/* Model Providers */}
               <div className="flex-1 max-w-[200px]">
-                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300 hover:shadow-lg transition-shadow">
                   <div className="text-4xl mb-2">⚡</div>
-                  <div className="font-bold text-slate-900 mb-1">Providers</div>
-                  <div className="text-xs text-slate-600">OpenAI, Claude, etc.</div>
+                  <div className="font-bold text-slate-900 mb-1">Best Model</div>
+                  <div className="text-xs text-slate-600">Optimal choice</div>
                 </div>
               </div>
             </div>
@@ -334,6 +390,21 @@ export default function LandingPage() {
                   Drop-in replacement — swap API endpoint and you're done
                 </span>
               </div>
+            </div>
+          </div>
+
+          {/* Privacy & Security Note */}
+          <div className="mt-8 max-w-3xl mx-auto">
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+              <h3 className="text-sm font-bold text-[#1E3A4C] mb-3 flex items-center gap-2">
+                <span className="text-lg">🔐</span>
+                Your data stays private
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Datoad operates as a pass-through proxy with <strong>zero data retention</strong>.
+                We only store metadata (query type, model used, token count) for analytics —
+                never the actual prompts or responses. All traffic is encrypted in transit (TLS 1.3).
+              </p>
             </div>
           </div>
         </div>

@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://datoad.dev/sitemap.xml
+
+# Disallow staging/dev paths if any
+Disallow: /api/
+Disallow: /*.json$

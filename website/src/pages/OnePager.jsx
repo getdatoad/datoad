@@ -51,6 +51,44 @@ export default function OnePager() {
               </div>
             </div>
 
+            {/* MODEL TRADE-OFFS */}
+            <div className="tradeoffs-block compact">
+              <h2>⚖️ Smart Routing</h2>
+              <p style={{ fontSize: '9px', marginBottom: '6px' }}>Not all models are equal. Datoad balances cost, speed & quality:</p>
+              <div className="model-comparison">
+                <div className="model-card">
+                  <div className="model-name">DeepSeek V3</div>
+                  <div className="model-badge cheapest">Cheapest</div>
+                  <div className="model-stats">
+                    <div className="stat">💰 0.04x</div>
+                    <div className="stat">⚡ 45/100</div>
+                    <div className="stat">🎯 70/100</div>
+                  </div>
+                </div>
+                <div className="model-card best">
+                  <div className="model-name">GPT-4o</div>
+                  <div className="model-badge balanced">Best Balance</div>
+                  <div className="model-stats">
+                    <div className="stat">💰 0.75x</div>
+                    <div className="stat">⚡ 95/100</div>
+                    <div className="stat">🎯 95/100</div>
+                  </div>
+                </div>
+                <div className="model-card">
+                  <div className="model-name">Sonnet 4.5</div>
+                  <div className="model-badge quality">Best Quality</div>
+                  <div className="model-stats">
+                    <div className="stat">💰 1.0x</div>
+                    <div className="stat">⚡ 85/100</div>
+                    <div className="stat">🎯 98/100</div>
+                  </div>
+                </div>
+              </div>
+              <div style={{ background: '#EFF6FF', padding: '4px 6px', borderRadius: '4px', marginTop: '6px', fontSize: '7px', textAlign: 'center', border: '1px solid #BFDBFE' }}>
+                <strong>Result:</strong> 30-45% savings while maintaining 90+ quality & 85+ speed
+              </div>
+            </div>
+
             {/* TIMELINE */}
             <div className="timeline-block compact">
               <h2>30-Day Pilot</h2>

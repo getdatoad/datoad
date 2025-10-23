@@ -507,139 +507,258 @@
   }
 
   body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .onepager-container {
     max-width: 100%;
-    padding: 0.25in;
-    font-size: 9px;
-    margin: 0;
+    padding: 0.2in !important;
+    font-size: 7.5px !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
   }
 
   .onepager-container .header {
-    padding: 10px 12px;
-    margin-bottom: 10px;
+    padding: 6px 8px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .onepager-container .logo {
+    gap: 8px !important;
+    margin-bottom: 4px !important;
   }
 
   .onepager-container .logo-icon {
-    width: 28px;
-    height: 28px;
+    width: 24px !important;
+    height: 24px !important;
   }
 
   .onepager-container .logo-text {
-    font-size: 18px;
+    font-size: 16px !important;
   }
 
   .onepager-container .tagline {
-    font-size: 11px;
+    font-size: 9px !important;
+    line-height: 1.3 !important;
   }
 
   /* KEEP TWO COLUMNS IN PRINT */
   .onepager-container .two-column-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 6px !important;
+    margin-bottom: 6px !important;
   }
 
   .onepager-container .left-column,
   .onepager-container .right-column {
-    gap: 8px;
-  }
-
-  .onepager-container .compact h2 {
-    font-size: 11px;
-    margin-bottom: 5px;
+    gap: 5px !important;
   }
 
   .onepager-container .compact {
-    padding: 10px !important;
+    padding: 6px 8px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .onepager-container .compact h2 {
+    font-size: 9px !important;
+    margin: 0 0 3px 0 !important;
   }
 
   .onepager-container .compact p {
-    font-size: 9px;
+    font-size: 7px !important;
+    margin: 0 0 3px 0 !important;
   }
 
   .onepager-container .compact ul,
   .onepager-container .compact ol {
-    font-size: 8px;
+    font-size: 6.5px !important;
+    margin: 2px 0 !important;
+    padding-left: 12px !important;
+  }
+
+  .onepager-container .compact li {
+    margin-bottom: 1px !important;
+  }
+
+  .onepager-container .compact-bullets li {
+    padding-left: 10px !important;
+  }
+
+  .onepager-container .key-principle {
+    font-size: 7px !important;
+    padding: 4px 6px !important;
+    margin-top: 4px !important;
+  }
+
+  .onepager-container .timeline-compact {
+    gap: 4px !important;
+  }
+
+  .onepager-container .timeline-compact .timeline-item {
+    padding: 4px 6px !important;
+    font-size: 7px !important;
+  }
+
+  .onepager-container .situation-box.compact {
+    padding: 6px !important;
+    margin: 4px 0 !important;
+  }
+
+  .onepager-container .situation-line {
+    padding: 2px 0 !important;
+    font-size: 7px !important;
+  }
+
+  .onepager-container .situation-line strong {
+    font-size: 8px !important;
+  }
+
+  .onepager-container .savings-compact {
+    margin: 4px 0 !important;
+  }
+
+  .onepager-container .savings-compact .savings-row {
+    padding: 3px 4px !important;
+    margin-bottom: 2px !important;
+    font-size: 6.5px !important;
+  }
+
+  .onepager-container .hero-stats.compact {
+    gap: 4px !important;
+    margin-top: 4px !important;
+  }
+
+  .onepager-container .hero-stats.compact .stat-item {
+    padding: 4px !important;
   }
 
   .onepager-container .hero-stats.compact .stat-value {
-    font-size: 14px;
+    font-size: 11px !important;
+    margin-bottom: 1px !important;
   }
 
   .onepager-container .hero-stats.compact .stat-label {
-    font-size: 7px;
+    font-size: 5.5px !important;
   }
 
-  .onepager-container .tier-price {
-    font-size: 11px;
+  .onepager-container .pricing-compact {
+    gap: 4px !important;
+    margin: 4px 0 !important;
+  }
+
+  .onepager-container .pricing-tier {
+    padding: 5px !important;
   }
 
   .onepager-container .tier-name {
-    font-size: 9px;
+    font-size: 7.5px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .onepager-container .tier-price {
+    font-size: 9px !important;
+    margin-bottom: 2px !important;
   }
 
   .onepager-container .tier-desc {
-    font-size: 7px;
+    font-size: 6px !important;
+  }
+
+  .onepager-container .trust-badge.compact {
+    padding: 4px !important;
+    font-size: 6px !important;
+    margin-top: 4px !important;
   }
 
   .onepager-container .cta-section.compact {
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 6px !important;
+    margin-bottom: 6px !important;
   }
 
   .onepager-container .cta-section.compact h2 {
-    font-size: 12px;
+    font-size: 10px !important;
+    margin: 0 0 3px 0 !important;
   }
 
   .onepager-container .cta-section.compact p {
-    font-size: 10px;
+    font-size: 8px !important;
+    margin: 0 0 4px 0 !important;
+  }
+
+  .onepager-container .cta-buttons.compact {
+    gap: 6px !important;
+  }
+
+  .onepager-container .cta-button {
+    padding: 5px 10px !important;
+    font-size: 7.5px !important;
   }
 
   .onepager-container .footer.compact {
-    padding: 10px;
+    padding: 6px !important;
   }
 
   .onepager-container .footer-grid {
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 70px 1fr !important;
+    gap: 10px !important;
   }
 
   .onepager-container .qr-code-img {
-    width: 90px;
-    height: 90px;
+    width: 65px !important;
+    height: 65px !important;
+  }
+
+  .onepager-container .qr-caption {
+    font-size: 5px !important;
   }
 
   .onepager-container .contact-info {
-    font-size: 9px;
+    font-size: 7px !important;
+    margin: 0 0 3px 0 !important;
+  }
+
+  .onepager-container .provider-logos.compact {
+    gap: 4px !important;
+    margin: 3px 0 !important;
+  }
+
+  .onepager-container .provider-logos.compact span {
+    padding: 2px 4px !important;
+    font-size: 5.5px !important;
   }
 
   .onepager-container .footer-note {
-    font-size: 7px;
+    font-size: 5.5px !important;
+    margin: 3px 0 !important;
   }
 
   .onepager-container .footer-copy {
-    font-size: 7px;
+    font-size: 5px !important;
+    margin: 2px 0 0 0 !important;
   }
 
-  /* Prevent page breaks inside blocks */
+  /* Prevent page breaks */
+  .onepager-container .two-column-grid,
+  .onepager-container .left-column,
+  .onepager-container .right-column {
+    page-break-inside: avoid !important;
+  }
+
   .onepager-container .problem-block,
   .onepager-container .solution-block,
   .onepager-container .timeline-block,
   .onepager-container .hero-block,
-  .onepager-container .pricing-block,
-  .onepager-container .cta-section,
-  .onepager-container .footer {
-    page-break-inside: avoid;
+  .onepager-container .pricing-block {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
-  /* Ensure everything fits on one page */
+  /* Ensure everything fits on one page - PORTRAIT */
   @page {
-    size: letter landscape;
-    margin: 0.25in;
+    size: letter portrait;
+    margin: 0.2in;
   }
 }
 

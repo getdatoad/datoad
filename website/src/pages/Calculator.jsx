@@ -20,13 +20,26 @@ export default function DatoadCalculator() {
 
   const results = useMemo(() => {
     const spend = Number(monthlySpend) || 0;
-    const baseline = spend;
+
+    // Model cost multipliers (relative to GPT-4 = 1.0)
+    const modelCosts = {
+      'gpt-4': 1.0,
+      'claude': 0.8,
+      'gpt-3.5': 0.15
+    };
+
+    // Calculate baseline cost adjusted by current model mix
+    const currentMixMultiplier = Object.entries(currentMix).reduce((acc, [model, pct]) => {
+      return acc + (modelCosts[model] || 0.5) * (pct / 100);
+    }, 0);
+
+    const baseline = Math.round(spend * currentMixMultiplier);
 
     const workloadCost = {
-      simple_qa: spend * (workload.simple_qa / 100),
-      sql_analytics: spend * (workload.sql_analytics / 100),
-      complex_reasoning: spend * (workload.complex_reasoning / 100),
-      doc_summarization: spend * (workload.doc_summarization / 100)
+      simple_qa: baseline * (workload.simple_qa / 100),
+      sql_analytics: baseline * (workload.sql_analytics / 100),
+      complex_reasoning: baseline * (workload.complex_reasoning / 100),
+      doc_summarization: baseline * (workload.doc_summarization / 100)
     };
 
     const optimizedCost = Math.round(

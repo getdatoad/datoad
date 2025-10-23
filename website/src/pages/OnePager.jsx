@@ -93,14 +93,23 @@ export default function OnePager() {
             <div className="timeline-block compact">
               <h2>30-Day Pilot</h2>
               <div className="timeline-compact">
-                <div className="timeline-item">
-                  <strong>Week 1:</strong> Calibration (100–200 queries)
+                <div className="timeline-item" style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                  <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#4A9B9B', color: 'white', fontSize: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', flexShrink: 0 }}>1</div>
+                  <div>
+                    <strong>Week 1:</strong> Calibration (100–200 queries)
+                  </div>
                 </div>
-                <div className="timeline-item">
-                  <strong>Week 2–3:</strong> Live routing with fallback
+                <div className="timeline-item" style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                  <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#4A9B9B', color: 'white', fontSize: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', flexShrink: 0 }}>2</div>
+                  <div>
+                    <strong>Week 2–3:</strong> Live routing with fallback
+                  </div>
                 </div>
-                <div className="timeline-item">
-                  <strong>Week 4:</strong> Review verified savings
+                <div className="timeline-item" style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                  <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#4A9B9B', color: 'white', fontSize: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', flexShrink: 0 }}>3</div>
+                  <div>
+                    <strong>Week 4:</strong> Review verified savings
+                  </div>
                 </div>
               </div>
             </div>
@@ -161,21 +170,24 @@ export default function OnePager() {
             {/* PRICING */}
             <div className="pricing-block compact">
               <h2>Simple Pricing</h2>
+              <p style={{ fontSize: '7px', textAlign: 'center', marginBottom: '6px', color: '#64748B' }}>
+                All plans include routing analytics and quality monitoring
+              </p>
 
               <div className="pricing-compact">
                 <div className="pricing-tier">
-                  <div className="tier-name">Starter</div>
+                  <div className="tier-name">Growth</div>
                   <div className="tier-price">$2,500/mo</div>
                   <div className="tier-desc">Up to 100K queries</div>
                 </div>
                 <div className="pricing-tier featured">
-                  <div className="tier-name">Professional</div>
+                  <div className="tier-name">Scale</div>
                   <div className="tier-price">$7,500/mo</div>
                   <div className="tier-desc">Up to 500K queries</div>
                 </div>
                 <div className="pricing-tier">
-                  <div className="tier-name">Enterprise</div>
-                  <div className="tier-price">Custom</div>
+                  <div className="tier-name">Custom</div>
+                  <div className="tier-price">Contact us</div>
                   <div className="tier-desc">Unlimited queries</div>
                 </div>
               </div>

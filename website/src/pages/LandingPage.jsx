@@ -1,62 +1,106 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle } from 'lucide-react';
+import { TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle, Calculator } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 export default function LandingPage() {
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show sticky CTA after scrolling 400px
+      setShowStickyCTA(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
       <Navbar />
+
+      {/* Sticky CTA Button */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
+          showStickyCTA ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20 pointer-events-none'
+        }`}
+      >
+        <Link
+          to="/calculator"
+          className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-6 py-3 rounded-full font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all flex items-center gap-2 group"
+        >
+          <Calculator className="w-5 h-5" />
+          <span className="hidden sm:inline">Calculate Savings</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </div>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-16">
-
-          <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-            Cut Your LLM API Costs<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600">
-              30-45% Instantly
-            </span>
-          </h2>
-
-          <p className="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto">
-            Intelligent routing that automatically selects the optimal model for each query.
-            <br />
-            <strong className="text-slate-900">No code changes required.</strong>
+          {/* Pre-hero line */}
+          <p className="text-sm md:text-base text-[#1E3A4C] mb-4 font-medium">
+            Most teams use GPT-4 for everything — but not every query needs it.
           </p>
 
-          <div className="flex gap-4 justify-center flex-wrap">
+          <h1 className="text-4xl md:text-6xl font-bold text-[#1E3A4C] mb-6 leading-tight">
+            Optimize LLM Performance<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD]">
+              Across Cost, Speed, and Quality
+            </span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-3xl mx-auto">
+            Optimize cost, speed, and quality — intelligently.
+          </p>
+
+          <p className="text-lg text-slate-600 mb-8 max-w-3xl mx-auto">
+            <strong className="text-[#1E3A4C]">No code changes required.</strong> Datoad plugs between your app and LLM APIs — start saving in minutes.
+          </p>
+
+          <div className="flex gap-4 justify-center flex-wrap mb-12">
             <Link
               to="/calculator"
-              className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2"
+              className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2"
             >
               Calculate Your Savings
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               to="/onepager"
-              className="bg-white text-slate-900 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-slate-200"
+              className="bg-white text-[#1E3A4C] px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
               View One Pager
             </Link>
+          </div>
+
+          {/* Testimonial */}
+          <div className="max-w-2xl mx-auto bg-[#E5F5F4] border border-[#4A9B9B]/30 rounded-2xl p-6 shadow-md">
+            <p className="text-lg text-[#1E3A4C] italic mb-2">
+              "Cut 38% in 30 days — without touching a single line of code."
+            </p>
+            <p className="text-sm text-slate-600 font-medium">
+              — Engineering Lead, B2B SaaS Platform
+            </p>
           </div>
         </div>
 
         {/* Stats */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
-            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600 mb-2">
+          <div className="bg-white p-8 rounded-2xl shadow-lg text-center border border-[#4A9B9B]/20">
+            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] mb-2">
               30-45%
             </div>
             <div className="text-slate-600 font-medium">Average Cost Reduction</div>
           </div>
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
-            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600 mb-2">
+          <div className="bg-white p-8 rounded-2xl shadow-lg text-center border border-[#4A9B9B]/20">
+            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] mb-2">
               5.7x
             </div>
             <div className="text-slate-600 font-medium">Average ROI</div>
           </div>
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
-            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600 mb-2">
+          <div className="bg-white p-8 rounded-2xl shadow-lg text-center border border-[#4A9B9B]/20">
+            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] mb-2">
               $265k+
             </div>
             <div className="text-slate-600 font-medium">Annual Savings (avg)</div>
@@ -234,16 +278,85 @@ export default function LandingPage() {
           </div>
         </div>
 
+        {/* Flow Animation */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A4C] mb-4">
+            How Datoad Works
+          </h2>
+          <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+            Plug in between your app and LLM providers — no code changes needed
+          </p>
+
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-[#4A9B9B]/10">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+              {/* Your App */}
+              <div className="flex-1 max-w-[200px]">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                  <div className="text-4xl mb-2">💻</div>
+                  <div className="font-bold text-slate-900 mb-1">Your App</div>
+                  <div className="text-xs text-slate-600">Makes LLM request</div>
+                </div>
+              </div>
+
+              {/* Arrow 1 */}
+              <div className="flex items-center justify-center">
+                <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse hidden md:block" />
+                <div className="md:hidden rotate-90">
+                  <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse" />
+                </div>
+              </div>
+
+              {/* Datoad */}
+              <div className="flex-1 max-w-[200px]">
+                <div className="bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-xl p-6 text-center border-2 border-[#4A9B9B] shadow-lg transform hover:scale-105 transition-transform">
+                  <div className="text-4xl mb-2">🧠</div>
+                  <div className="font-bold text-white mb-1">Datoad</div>
+                  <div className="text-xs text-white/90">Analyzes & routes</div>
+                </div>
+              </div>
+
+              {/* Arrow 2 */}
+              <div className="flex items-center justify-center">
+                <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse hidden md:block" />
+                <div className="md:hidden rotate-90">
+                  <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse" />
+                </div>
+              </div>
+
+              {/* Model Providers */}
+              <div className="flex-1 max-w-[200px]">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                  <div className="text-4xl mb-2">⚡</div>
+                  <div className="font-bold text-slate-900 mb-1">Providers</div>
+                  <div className="text-xs text-slate-600">OpenAI, Claude, etc.</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-[#E5F5F4] px-4 py-2 rounded-full border border-[#4A9B9B]/30">
+                <CheckCircle className="w-4 h-4 text-[#4A9B9B]" />
+                <span className="text-sm font-semibold text-[#1E3A4C]">
+                  Drop-in replacement — swap API endpoint and you're done
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Features */}
         <div className="grid md:grid-cols-2 gap-12 mb-20">
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                <TrendingDown className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-[#E5F5F4] rounded-xl flex items-center justify-center">
+                <TrendingDown className="w-6 h-6 text-[#4A9B9B]" />
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Cognitive Routing</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-2">Cognitive Routing</h3>
+              <p className="text-sm font-semibold text-[#4A9B9B] mb-3">
+                LLM routing meets cost & performance analytics.
+              </p>
               <p className="text-slate-600 leading-relaxed">
                 Our AI analyzes each query and routes it to the optimal model based on complexity,
                 cost, and quality requirements. Simple queries use cheaper models, complex ones get premium treatment.
@@ -253,12 +366,12 @@ export default function LandingPage() {
 
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center">
-                <Shield className="w-6 h-6 text-teal-600" />
+              <div className="w-12 h-12 bg-[#E5F5F4] rounded-xl flex items-center justify-center">
+                <Shield className="w-6 h-6 text-[#4A9B9B]" />
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Zero Code Changes</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3">Zero Code Changes</h3>
               <p className="text-slate-600 leading-relaxed">
                 Just swap your API endpoint. Datoad sits between your application and LLM providers,
                 working seamlessly with OpenAI, Anthropic, Google, AWS, and Azure.
@@ -268,12 +381,12 @@ export default function LandingPage() {
 
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                <BarChart3 className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 bg-[#E5F5F4] rounded-xl flex items-center justify-center">
+                <BarChart3 className="w-6 h-6 text-[#4A9B9B]" />
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Real-Time Analytics</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3">Real-Time Analytics</h3>
               <p className="text-slate-600 leading-relaxed">
                 Track your savings vs. baseline in real-time. See exactly which queries were optimized
                 and how much you're saving per request type.
@@ -283,12 +396,12 @@ export default function LandingPage() {
 
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-[#E5F5F4] rounded-xl flex items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-[#4A9B9B]" />
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Quality First</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3">Quality First</h3>
               <p className="text-slate-600 leading-relaxed">
                 We never compromise quality for cost. SQL queries are validated with dry-run
                 cost estimation. Complex reasoning stays on premium models.
@@ -298,46 +411,46 @@ export default function LandingPage() {
         </div>
 
         {/* How It Works */}
-        <div className="bg-white rounded-3xl shadow-2xl p-12 mb-20">
-          <h2 className="text-4xl font-bold text-center text-slate-900 mb-12">How It Works</h2>
+        <div className="bg-white rounded-3xl shadow-2xl p-12 mb-20 border border-[#4A9B9B]/10">
+          <h2 className="text-4xl font-bold text-center text-[#1E3A4C] mb-12">How It Works</h2>
 
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 1
               </div>
-              <h3 className="font-bold text-lg mb-2">Your App Sends Request</h3>
+              <h3 className="font-bold text-lg mb-2 text-[#1E3A4C]">Your App Sends Request</h3>
               <p className="text-slate-600 text-sm">No code changes needed</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-teal-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 2
               </div>
-              <h3 className="font-bold text-lg mb-2">Datoad Analyzes</h3>
+              <h3 className="font-bold text-lg mb-2 text-[#1E3A4C]">Datoad Analyzes</h3>
               <p className="text-slate-600 text-sm">Query complexity & requirements</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 3
               </div>
-              <h3 className="font-bold text-lg mb-2">Smart Routing</h3>
+              <h3 className="font-bold text-lg mb-2 text-[#1E3A4C]">Smart Routing</h3>
               <p className="text-slate-600 text-sm">Optimal model selected</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 4
               </div>
-              <h3 className="font-bold text-lg mb-2">You Save Money</h3>
+              <h3 className="font-bold text-lg mb-2 text-[#1E3A4C]">You Save Money</h3>
               <p className="text-slate-600 text-sm">30-45% cost reduction</p>
             </div>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-3xl shadow-2xl p-12 text-center text-white">
+        <div className="bg-gradient-to-r from-[#1E3A4C] to-[#2C4A5E] rounded-3xl shadow-2xl p-12 text-center text-white">
           <h2 className="text-4xl font-bold mb-4">Ready to Optimize Your LLM Costs?</h2>
           <p className="text-xl mb-8 opacity-90">
             Start with a free 30-day pilot. See real savings, no commitment required.
@@ -346,13 +459,13 @@ export default function LandingPage() {
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
               to="/calculator"
-              className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+              className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
             >
               Calculate Savings Now
             </Link>
             <a
               href="mailto:diegocastellanos@datoad.dev?subject=Pilot%20Program%20Interest"
-              className="bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-white/30"
+              className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
               Request Pilot Access
             </a>

@@ -494,7 +494,8 @@
 
 /* PRINT STYLES - SINGLE PAGE OPTIMIZED */
 @media print {
-  .no-print {
+  /* Hide navbar and share section */
+  nav, .no-print {
     display: none !important;
   }
 
@@ -505,73 +506,123 @@
     color-adjust: exact !important;
   }
 
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
   .onepager-container {
     max-width: 100%;
-    padding: 0.3in;
-    font-size: 10px;
+    padding: 0.25in;
+    font-size: 9px;
+    margin: 0;
   }
 
   .onepager-container .header {
-    padding: 12px 16px;
-    margin-bottom: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
   }
 
   .onepager-container .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 
   .onepager-container .logo-text {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .onepager-container .tagline {
-    font-size: 12px;
+    font-size: 11px;
   }
 
+  /* KEEP TWO COLUMNS IN PRINT */
   .onepager-container .two-column-grid {
-    gap: 12px;
-    margin-bottom: 12px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 
   .onepager-container .left-column,
   .onepager-container .right-column {
-    gap: 10px;
+    gap: 8px;
   }
 
   .onepager-container .compact h2 {
-    font-size: 12px;
-    margin-bottom: 6px;
+    font-size: 11px;
+    margin-bottom: 5px;
   }
 
   .onepager-container .compact {
-    padding: 12px !important;
+    padding: 10px !important;
+  }
+
+  .onepager-container .compact p {
+    font-size: 9px;
+  }
+
+  .onepager-container .compact ul,
+  .onepager-container .compact ol {
+    font-size: 8px;
   }
 
   .onepager-container .hero-stats.compact .stat-value {
-    font-size: 16px;
-  }
-
-  .onepager-container .tier-price {
-    font-size: 12px;
-  }
-
-  .onepager-container .cta-section.compact {
-    padding: 12px;
-    margin-bottom: 12px;
-  }
-
-  .onepager-container .cta-section.compact h2 {
     font-size: 14px;
   }
 
+  .onepager-container .hero-stats.compact .stat-label {
+    font-size: 7px;
+  }
+
+  .onepager-container .tier-price {
+    font-size: 11px;
+  }
+
+  .onepager-container .tier-name {
+    font-size: 9px;
+  }
+
+  .onepager-container .tier-desc {
+    font-size: 7px;
+  }
+
+  .onepager-container .cta-section.compact {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .onepager-container .cta-section.compact h2 {
+    font-size: 12px;
+  }
+
+  .onepager-container .cta-section.compact p {
+    font-size: 10px;
+  }
+
   .onepager-container .footer.compact {
-    padding: 12px;
+    padding: 10px;
+  }
+
+  .onepager-container .footer-grid {
+    grid-template-columns: 100px 1fr;
   }
 
   .onepager-container .qr-code-img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
+  }
+
+  .onepager-container .contact-info {
+    font-size: 9px;
+  }
+
+  .onepager-container .footer-note {
+    font-size: 7px;
+  }
+
+  .onepager-container .footer-copy {
+    font-size: 7px;
   }
 
   /* Prevent page breaks inside blocks */
@@ -587,8 +638,8 @@
 
   /* Ensure everything fits on one page */
   @page {
-    size: letter;
-    margin: 0.3in;
+    size: letter landscape;
+    margin: 0.25in;
   }
 }
 

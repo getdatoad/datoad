@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle } from 'lucide-react';
+import { TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle, Calculator } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 export default function LandingPage() {
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show sticky CTA after scrolling 400px
+      setShowStickyCTA(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
       <Navbar />
+
+      {/* Sticky CTA Button */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
+          showStickyCTA ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20 pointer-events-none'
+        }`}
+      >
+        <Link
+          to="/calculator"
+          className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-6 py-3 rounded-full font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all flex items-center gap-2 group"
+        >
+          <Calculator className="w-5 h-5" />
+          <span className="hidden sm:inline">Calculate Savings</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </div>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-16">

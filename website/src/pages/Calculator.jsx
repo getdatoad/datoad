@@ -5,12 +5,12 @@ import Navbar from '../components/Navbar';
 export default function DatoadCalculator() {
   const [monthlySpend, setMonthlySpend] = useState('');
   const [currentMix, setCurrentMix] = useState({
-    'gpt-4': 25,
-    'gpt-3.5': 30,
-    'claude': 15,
-    'gemini': 15,
-    'mistral': 10,
-    'deepseek': 5
+    'gpt-4o': 20,
+    'claude-sonnet-4.5': 25,
+    'gpt-4-turbo': 15,
+    'gemini-2.0-flash': 15,
+    'mistral-large': 15,
+    'deepseek-v3': 10
   });
   const [workload, setWorkload] = useState({
     simple_qa: 30,
@@ -24,20 +24,31 @@ export default function DatoadCalculator() {
   const results = useMemo(() => {
     const spend = Number(monthlySpend) || 0;
 
-    // Model cost multipliers (relative to GPT-4 = 1.0)
-    // Based on average market pricing for input tokens
-    const modelCosts = {
-      'gpt-4': 1.0,      // $30 per 1M tokens (baseline)
-      'claude': 0.8,     // ~$24 per 1M tokens
-      'gpt-3.5': 0.15,   // ~$4.50 per 1M tokens
-      'gemini': 0.35,    // ~$10.50 per 1M tokens
-      'mistral': 0.25,   // ~$7.50 per 1M tokens
-      'deepseek': 0.05   // ~$1.50 per 1M tokens
+    // Model specs: cost, speed (tokens/sec), quality (0-100)
+    const modelSpecs = {
+      'gpt-4o': { cost: 0.75, speed: 95, quality: 95 },           // Fast & high quality
+      'claude-sonnet-4.5': { cost: 1.0, speed: 85, quality: 98 }, // Baseline - best quality
+      'gpt-4-turbo': { cost: 0.5, speed: 80, quality: 90 },       // Good balance
+      'gemini-2.0-flash': { cost: 0.30, speed: 98, quality: 85 }, // Very fast
+      'mistral-large': { cost: 0.25, speed: 75, quality: 82 },    // Economical
+      'deepseek-v3': { cost: 0.04, speed: 45, quality: 70 }       // Cheapest, slow
     };
 
     // Calculate baseline cost adjusted by current model mix
     const currentMixMultiplier = Object.entries(currentMix).reduce((acc, [model, pct]) => {
-      return acc + (modelCosts[model] || 0.5) * (pct / 100);
+      const spec = modelSpecs[model] || { cost: 0.5 };
+      return acc + spec.cost * (pct / 100);
+    }, 0);
+
+    // Calculate average speed and quality of current mix
+    const avgSpeed = Object.entries(currentMix).reduce((acc, [model, pct]) => {
+      const spec = modelSpecs[model] || { speed: 50 };
+      return acc + spec.speed * (pct / 100);
+    }, 0);
+
+    const avgQuality = Object.entries(currentMix).reduce((acc, [model, pct]) => {
+      const spec = modelSpecs[model] || { quality: 50 };
+      return acc + spec.quality * (pct / 100);
     }, 0);
 
     const baseline = Math.round(spend * currentMixMultiplier);
@@ -63,13 +74,24 @@ export default function DatoadCalculator() {
     const roi = datoadFee > 0 ? netBenefit / datoadFee : 0;
 
     const optimizedMix = {
-      'gpt-4': 15,
-      'claude': 10,
-      'gemini': 15,
-      'mistral': 25,
-      'gpt-3.5': 20,
-      'deepseek': 15
+      'gpt-4o': 10,
+      'claude-sonnet-4.5': 15,
+      'gpt-4-turbo': 10,
+      'gemini-2.0-flash': 25,
+      'mistral-large': 20,
+      'deepseek-v3': 20
     };
+
+    // Calculate optimized mix speed and quality
+    const optimizedSpeed = Object.entries(optimizedMix).reduce((acc, [model, pct]) => {
+      const spec = modelSpecs[model] || { speed: 50 };
+      return acc + spec.speed * (pct / 100);
+    }, 0);
+
+    const optimizedQuality = Object.entries(optimizedMix).reduce((acc, [model, pct]) => {
+      const spec = modelSpecs[model] || { quality: 50 };
+      return acc + spec.quality * (pct / 100);
+    }, 0);
 
     const beforeDistribution = {
       total: baseline,
@@ -99,7 +121,12 @@ export default function DatoadCalculator() {
       roi,
       optimizedMix,
       beforeDistribution,
-      afterDistribution
+      afterDistribution,
+      avgSpeed: Math.round(avgSpeed),
+      avgQuality: Math.round(avgQuality),
+      optimizedSpeed: Math.round(optimizedSpeed),
+      optimizedQuality: Math.round(optimizedQuality),
+      modelSpecs
     };
   }, [monthlySpend, workload, currentMix]);
 
@@ -151,13 +178,24 @@ export default function DatoadCalculator() {
           <div className="flex items-start gap-3">
             <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
-              <div className="text-sm font-semibold text-blue-900 mb-1">Input Summary</div>
+              <div className="text-sm font-semibold text-blue-900 mb-1">Your Current Mix Performance</div>
               <div className="text-sm text-blue-800">
                 Monthly spend <span className="font-mono font-bold">${monthlySpend ? Number(monthlySpend).toLocaleString() : '0'}</span>
                 {' · '}
                 Model mix <span className="font-bold">{dominantModel[1].toFixed(0)}% {dominantModel[0]}</span>
                 {' · '}
                 Workload <span className="font-bold">{topWorkload[1].toFixed(0)}% {topWorkload[0].replace('_', ' ')}</span>
+              </div>
+              <div className="flex gap-4 mt-2">
+                <div className="text-xs">
+                  ⚡ <span className="font-semibold">Speed:</span> <span className="font-mono font-bold text-blue-900">{results.avgSpeed}/100</span>
+                </div>
+                <div className="text-xs">
+                  🎯 <span className="font-semibold">Quality:</span> <span className="font-mono font-bold text-blue-900">{results.avgQuality}/100</span>
+                </div>
+                <div className="text-xs">
+                  💰 <span className="font-semibold">Cost Index:</span> <span className="font-mono font-bold text-blue-900">{(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x</span>
+                </div>
               </div>
               <div className="text-xs text-blue-600 mt-1 italic">
                 Adjust the sliders below to see your personalized savings
@@ -198,36 +236,46 @@ export default function DatoadCalculator() {
                 Current Model Mix (%)
               </label>
               <div className="space-y-3">
-                {Object.entries(currentMix).map(([model, pct]) => (
-                  <div key={model} className="flex items-center gap-3">
-                    <span className="w-24 text-sm font-medium text-slate-600 capitalize">
-                      {model}
-                    </span>
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={pct}
-                      onChange={(e) => {
-                        const newPct = Number(e.target.value);
-                        setCurrentMix(prev => {
-                          const others = Object.keys(prev).filter(k => k !== model);
-                          const remaining = 100 - newPct;
-                          const distributed = remaining / others.length;
-                          return {
-                            ...prev,
-                            [model]: newPct,
-                            ...Object.fromEntries(others.map(k => [k, distributed]))
-                          };
-                        });
-                      }}
-                      className="flex-1"
-                    />
-                    <span className="w-12 text-right text-sm font-mono text-slate-900">
-                      {pct.toFixed(0)}%
-                    </span>
-                  </div>
-                ))}
+                {Object.entries(currentMix).map(([model, pct]) => {
+                  const spec = results.modelSpecs[model] || { cost: 0.5, speed: 50, quality: 50 };
+                  return (
+                    <div key={model} className="space-y-1">
+                      <div className="flex items-center gap-3">
+                        <span className="w-32 text-xs font-medium text-slate-700" style={{ fontSize: '11px' }}>
+                          {model}
+                        </span>
+                        <input
+                          type="range"
+                          min="0"
+                          max="100"
+                          value={pct}
+                          onChange={(e) => {
+                            const newPct = Number(e.target.value);
+                            setCurrentMix(prev => {
+                              const others = Object.keys(prev).filter(k => k !== model);
+                              const remaining = 100 - newPct;
+                              const distributed = remaining / others.length;
+                              return {
+                                ...prev,
+                                [model]: newPct,
+                                ...Object.fromEntries(others.map(k => [k, distributed]))
+                              };
+                            });
+                          }}
+                          className="flex-1"
+                        />
+                        <span className="w-12 text-right text-sm font-mono text-slate-900">
+                          {pct.toFixed(0)}%
+                        </span>
+                      </div>
+                      <div className="flex gap-2 ml-32 text-xs">
+                        <span className="text-emerald-600">⚡{spec.speed}</span>
+                        <span className="text-blue-600">🎯{spec.quality}</span>
+                        <span className="text-orange-600">💰{spec.cost.toFixed(2)}x</span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
@@ -399,6 +447,113 @@ export default function DatoadCalculator() {
               </div>
             </div>
 
+            {/* Performance Trade-offs */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h3 className="text-lg font-bold text-slate-900 mb-4">⚡ Performance vs Cost Trade-off</h3>
+
+              <div className="grid grid-cols-2 gap-6">
+                {/* Current Mix */}
+                <div className="p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg border border-slate-200">
+                  <div className="text-center mb-3">
+                    <div className="text-xs font-semibold text-slate-600 uppercase mb-1">Your Current Mix</div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-slate-600">Speed</span>
+                        <span className="font-bold text-emerald-600">{results.avgSpeed}/100</span>
+                      </div>
+                      <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-emerald-500 rounded-full transition-all"
+                          style={{ width: `${results.avgSpeed}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-slate-600">Quality</span>
+                        <span className="font-bold text-blue-600">{results.avgQuality}/100</span>
+                      </div>
+                      <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-blue-500 rounded-full transition-all"
+                          style={{ width: `${results.avgQuality}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-slate-600">Cost</span>
+                        <span className="font-bold text-orange-600">${results.baseline.toLocaleString()}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Optimized Mix */}
+                <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg border-2 border-green-300">
+                  <div className="text-center mb-3">
+                    <div className="text-xs font-semibold text-green-700 uppercase mb-1">Datoad Optimized</div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-slate-600">Speed</span>
+                        <span className="font-bold text-emerald-600">{results.optimizedSpeed}/100</span>
+                        {results.optimizedSpeed > results.avgSpeed && (
+                          <span className="text-xs text-green-600">↑ {(results.optimizedSpeed - results.avgSpeed).toFixed(0)}</span>
+                        )}
+                      </div>
+                      <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-emerald-500 rounded-full transition-all"
+                          style={{ width: `${results.optimizedSpeed}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-slate-600">Quality</span>
+                        <span className="font-bold text-blue-600">{results.optimizedQuality}/100</span>
+                        {results.optimizedQuality !== results.avgQuality && (
+                          <span className={`text-xs ${results.optimizedQuality > results.avgQuality ? 'text-green-600' : 'text-orange-600'}`}>
+                            {results.optimizedQuality > results.avgQuality ? '↑' : '↓'} {Math.abs(results.optimizedQuality - results.avgQuality).toFixed(0)}
+                          </span>
+                        )}
+                      </div>
+                      <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-blue-500 rounded-full transition-all"
+                          style={{ width: `${results.optimizedQuality}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-slate-600">Cost</span>
+                        <span className="font-bold text-green-600">${results.optimizedCost.toLocaleString()}</span>
+                        <span className="text-xs text-green-600">↓ {results.savingsPct.toFixed(0)}%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div className="text-xs text-yellow-800">
+                  <strong>💡 Why not 100% DeepSeek?</strong> While DeepSeek is the cheapest (0.04x cost), it has lower speed (45/100) and quality (70/100).
+                  Datoad balances cost with performance to maintain {results.optimizedQuality}/100 quality and {results.optimizedSpeed}/100 speed while still saving {results.savingsPct.toFixed(0)}%.
+                </div>
+              </div>
+            </div>
+
             {/* Model Mix Optimization */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex items-center gap-2 mb-4">
@@ -443,13 +598,16 @@ export default function DatoadCalculator() {
               </div>
 
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <div className="text-xs font-semibold text-blue-900 mb-2">Routing Strategy:</div>
+                <div className="text-xs font-semibold text-blue-900 mb-2">Smart Routing Strategy:</div>
                 <ul className="text-xs text-blue-800 space-y-1">
-                  <li>• Simple QA → DeepSeek, GPT-3.5, or Mistral (70-95% cheaper)</li>
-                  <li>• SQL/Analytics → Mistral or Gemini (65-75% cheaper than GPT-4)</li>
-                  <li>• Complex reasoning → GPT-4 or Claude (quality first)</li>
-                  <li>• Doc summarization → GPT-3.5 or Gemini (60-85% cheaper)</li>
+                  <li>• <strong>Simple QA</strong> → DeepSeek V3, Mistral Large (90-96% cheaper, acceptable quality)</li>
+                  <li>• <strong>SQL/Analytics</strong> → Gemini 2.0 Flash, Mistral Large (fast + cheap)</li>
+                  <li>• <strong>Complex reasoning</strong> → Claude Sonnet 4.5, GPT-4o (quality > cost)</li>
+                  <li>• <strong>Doc summarization</strong> → Gemini 2.0 Flash, GPT-4 Turbo (balanced)</li>
                 </ul>
+                <div className="mt-2 text-xs text-blue-600 italic">
+                  Each request dynamically routed based on complexity, latency requirements, and cost.
+                </div>
               </div>
             </div>
 

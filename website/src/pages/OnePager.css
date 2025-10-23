@@ -632,9 +632,46 @@
   .no-print {
     display: none !important;
   }
-  
+
+  /* Force color printing */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
   .onepager-container {
     max-width: 100%;
     padding: 0.25in;
+  }
+
+  /* Ensure backgrounds print */
+  .onepager-container .header,
+  .onepager-container .problem-block,
+  .onepager-container .solution-block,
+  .onepager-container .hero-block,
+  .onepager-container .timeline-block,
+  .onepager-container .pricing-card,
+  .onepager-container .cta-section,
+  .onepager-container .situation-box,
+  .onepager-container .flow-box,
+  .onepager-container .pill {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Prevent page breaks in important sections */
+  .onepager-container .problem-block,
+  .onepager-container .solution-block,
+  .onepager-container .hero-block,
+  .onepager-container .pricing-card,
+  .onepager-container .timeline-item {
+    page-break-inside: avoid;
+  }
+
+  /* Better page breaks */
+  .onepager-container h2,
+  .onepager-container h3 {
+    page-break-after: avoid;
   }
 }

@@ -3,7 +3,7 @@ import { DollarSign, TrendingDown, Zap, PieChart, Info, CheckCircle } from 'luci
 import Navbar from '../components/Navbar';
 
 export default function DatoadCalculator() {
-  const [monthlySpend, setMonthlySpend] = useState(50000);
+  const [monthlySpend, setMonthlySpend] = useState('');
   const [currentMix, setCurrentMix] = useState({
     'gpt-4': 40,
     'gpt-3.5': 50,
@@ -19,13 +19,14 @@ export default function DatoadCalculator() {
   const [showTooltip, setShowTooltip] = useState(null);
 
   const results = useMemo(() => {
-    const baseline = monthlySpend;
+    const spend = Number(monthlySpend) || 0;
+    const baseline = spend;
 
     const workloadCost = {
-      simple_qa: monthlySpend * (workload.simple_qa / 100),
-      sql_analytics: monthlySpend * (workload.sql_analytics / 100),
-      complex_reasoning: monthlySpend * (workload.complex_reasoning / 100),
-      doc_summarization: monthlySpend * (workload.doc_summarization / 100)
+      simple_qa: spend * (workload.simple_qa / 100),
+      sql_analytics: spend * (workload.sql_analytics / 100),
+      complex_reasoning: spend * (workload.complex_reasoning / 100),
+      doc_summarization: spend * (workload.doc_summarization / 100)
     };
 
     const optimizedCost =
@@ -155,12 +156,15 @@ export default function DatoadCalculator() {
                 Monthly LLM Spend (USD)
               </label>
               <input
-                type="number"
+                type="text"
+                inputMode="numeric"
                 value={monthlySpend}
-                onChange={(e) => setMonthlySpend(Number(e.target.value))}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/[^0-9]/g, '');
+                  setMonthlySpend(value);
+                }}
+                placeholder="50000"
                 className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg text-lg font-mono focus:border-blue-500 focus:outline-none"
-                min="1000"
-                step="1000"
               />
             </div>
 

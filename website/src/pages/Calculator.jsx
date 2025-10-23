@@ -129,7 +129,7 @@ export default function DatoadCalculator() {
             <div className="flex-1">
               <div className="text-sm font-semibold text-blue-900 mb-1">Input Summary</div>
               <div className="text-sm text-blue-800">
-                Monthly spend <span className="font-mono font-bold">${monthlySpend.toLocaleString()}</span>
+                Monthly spend <span className="font-mono font-bold">${monthlySpend ? Number(monthlySpend).toLocaleString() : '0'}</span>
                 {' · '}
                 Model mix <span className="font-bold">{dominantModel[1].toFixed(0)}% {dominantModel[0]}</span>
                 {' · '}

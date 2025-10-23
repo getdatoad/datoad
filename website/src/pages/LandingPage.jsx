@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle, Calculator } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import ContactForm from '../components/ContactForm';
 
 export default function LandingPage() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [contactFormType, setContactFormType] = useState('pilot');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +18,11 @@ export default function LandingPage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const openContactForm = (type = 'pilot') => {
+    setContactFormType(type);
+    setIsContactFormOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
@@ -66,39 +74,36 @@ export default function LandingPage() {
               Calculate Your Savings
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a
-              href="mailto:diegocastellanos@datoad.dev?subject=30-Day%20Pilot%20Request&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%0AMain%20use%20cases%3A%0A%0AThanks!"
+            <button
+              onClick={() => openContactForm('demo')}
               className="bg-white text-[#1E3A4C] px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
               Book a Demo
-            </a>
+            </button>
           </div>
 
-          {/* Testimonial */}
-          <div className="max-w-2xl mx-auto bg-white border-2 border-[#4A9B9B]/30 rounded-2xl p-6 shadow-lg">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  JD
-                </div>
+          {/* Pilot Program Call */}
+          <div className="max-w-2xl mx-auto bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-2xl p-6 shadow-lg">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-full text-white font-bold text-xl mb-3">
+                🚀
               </div>
-              <div className="flex-1 text-left">
-                <p className="text-lg text-[#1E3A4C] italic mb-2">
-                  "Cut 38% in 30 days — without touching a single line of code."
-                </p>
-                <p className="text-sm text-slate-600 font-medium">
-                  — John Davis, Engineering Lead
-                </p>
-                <p className="text-xs text-slate-500">
-                  B2B SaaS Platform, $50k/mo LLM spend
-                </p>
-              </div>
+              <h3 className="text-lg font-bold text-[#1E3A4C] mb-2">
+                Looking for Pilot Partners
+              </h3>
+              <p className="text-sm text-slate-600 mb-3">
+                We're onboarding 2 companies this quarter for a <strong>free 30-day pilot</strong>.
+                Help us validate real-world savings and get early access to the platform.
+              </p>
+              <p className="text-xs text-slate-500">
+                Ideal for: Teams spending $10k+/month on LLM APIs
+              </p>
             </div>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center border border-[#4A9B9B]/20">
             <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] mb-2">
               30-45%
@@ -116,6 +121,61 @@ export default function LandingPage() {
               $265k+
             </div>
             <div className="text-slate-600 font-medium">Annual Savings (avg)</div>
+          </div>
+        </div>
+
+        {/* Integrations & Trust Layer */}
+        <div className="mb-24">
+          <h3 className="text-center text-sm font-semibold text-slate-500 uppercase tracking-wide mb-8">
+            Works with all major LLM providers
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center max-w-4xl mx-auto">
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">🤖</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">OpenAI</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">⚡</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">Anthropic</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">🔷</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">Google</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">☁️</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">AWS</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center border border-slate-200">
+                <span className="text-2xl font-bold text-slate-700">🔵</span>
+              </div>
+              <span className="text-xs font-medium text-slate-600">Azure</span>
+            </div>
+          </div>
+
+          {/* Security Badges */}
+          <div className="flex justify-center gap-6 mt-12">
+            <div className="flex items-center gap-2 text-slate-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+              <span className="text-lg">🔒</span>
+              <span className="text-xs font-semibold">SOC2 Type II<br />in progress</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+              <span className="text-lg">🛡️</span>
+              <span className="text-xs font-semibold">GDPR/CCPA<br />compliant</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+              <span className="text-lg">🔐</span>
+              <span className="text-xs font-semibold">Zero data<br />retention</span>
+            </div>
           </div>
         </div>
 
@@ -273,7 +333,7 @@ export default function LandingPage() {
         </div>
 
         {/* Flow Animation */}
-        <div className="mb-20">
+        <div className="mb-24">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A4C] mb-4">
             How Datoad Works
           </h2>
@@ -285,7 +345,7 @@ export default function LandingPage() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
               {/* Your App */}
               <div className="flex-1 max-w-[200px]">
-                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300 hover:shadow-lg transition-shadow">
                   <div className="text-4xl mb-2">💻</div>
                   <div className="font-bold text-slate-900 mb-1">Your App</div>
                   <div className="text-xs text-slate-600">Makes LLM request</div>
@@ -304,8 +364,9 @@ export default function LandingPage() {
               <div className="flex-1 max-w-[200px]">
                 <div className="bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-xl p-6 text-center border-2 border-[#4A9B9B] shadow-lg transform hover:scale-105 transition-transform">
                   <div className="text-4xl mb-2">🧠</div>
-                  <div className="font-bold text-white mb-1">Datoad</div>
+                  <div className="font-bold text-white mb-1">Datoad Router</div>
                   <div className="text-xs text-white/90">Analyzes & routes</div>
+                  <div className="text-[10px] text-white/75 mt-1">Zero latency added</div>
                 </div>
               </div>
 
@@ -319,10 +380,10 @@ export default function LandingPage() {
 
               {/* Model Providers */}
               <div className="flex-1 max-w-[200px]">
-                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300 hover:shadow-lg transition-shadow">
                   <div className="text-4xl mb-2">⚡</div>
-                  <div className="font-bold text-slate-900 mb-1">Providers</div>
-                  <div className="text-xs text-slate-600">OpenAI, Claude, etc.</div>
+                  <div className="font-bold text-slate-900 mb-1">Best Model</div>
+                  <div className="text-xs text-slate-600">Optimal choice</div>
                 </div>
               </div>
             </div>
@@ -334,6 +395,21 @@ export default function LandingPage() {
                   Drop-in replacement — swap API endpoint and you're done
                 </span>
               </div>
+            </div>
+          </div>
+
+          {/* Privacy & Security Note */}
+          <div className="mt-8 max-w-3xl mx-auto">
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+              <h3 className="text-sm font-bold text-[#1E3A4C] mb-3 flex items-center gap-2">
+                <span className="text-lg">🔐</span>
+                Your data stays private
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Datoad operates as a pass-through proxy with <strong>zero data retention</strong>.
+                We only store metadata (query type, model used, token count) for analytics —
+                never the actual prompts or responses. All traffic is encrypted in transit (TLS 1.3).
+              </p>
             </div>
           </div>
         </div>
@@ -460,12 +536,12 @@ export default function LandingPage() {
             >
               Calculate Your Savings
             </Link>
-            <a
-              href="mailto:diegocastellanos@datoad.dev?subject=30-Day%20Pilot%20Request&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%0AMain%20use%20cases%3A%0A%0AThanks!"
+            <button
+              onClick={() => openContactForm('pilot')}
               className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
-              Book a Demo
-            </a>
+              Request Pilot Access
+            </button>
           </div>
 
           <p className="mt-8 text-sm opacity-75">
@@ -522,6 +598,13 @@ export default function LandingPage() {
           <p className="text-xs mt-4 text-slate-400">© 2025 Datoad, Inc. All rights reserved.</p>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        formType={contactFormType}
+      />
     </div>
   );
 }

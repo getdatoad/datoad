@@ -194,19 +194,14 @@
   font-weight: 600;
 }
 
-.onepager-container .model-badge.cheapest {
-  background: #D1FAE5;
-  color: #065F46;
+.onepager-container .model-badge.risky {
+  background: #FEE2E2;
+  color: #991B1B;
 }
 
-.onepager-container .model-badge.balanced {
-  background: #DBEAFE;
-  color: #1E40AF;
-}
-
-.onepager-container .model-badge.quality {
-  background: #E9D5FF;
-  color: #6B21A8;
+.onepager-container .model-badge.expensive {
+  background: #FEF3C7;
+  color: #92400E;
 }
 
 .onepager-container .model-stats {
@@ -219,6 +214,18 @@
   font-size: 7px;
   color: #64748B;
   font-weight: 600;
+}
+
+.onepager-container .model-stats .stat.good {
+  color: #16A34A;
+}
+
+.onepager-container .model-stats .stat.bad {
+  color: #DC2626;
+}
+
+.onepager-container .model-stats .stat.warn {
+  color: #CA8A04;
 }
 
 /* TIMELINE */

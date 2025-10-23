@@ -64,27 +64,27 @@ export default function LandingPage() {
         </div>
 
         {/* Model Trade-offs Section */}
-        <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl shadow-2xl p-12 mb-20 text-white">
+        <div className="bg-gradient-to-br from-[#1E3A4C] to-[#2C4A5E] rounded-2xl shadow-2xl p-12 mb-20 text-white">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Why Not Just Use the Cheapest Model?
+            The Problem: No Single Model is Perfect
           </h2>
           <p className="text-center text-slate-300 mb-12 max-w-3xl mx-auto">
-            Because cost isn't everything. Every LLM has trade-offs between speed, quality, and price.
+            Every LLM has critical trade-offs. Choosing just one means sacrificing speed, quality, or budget.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {/* DeepSeek - Cheapest */}
-            <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6">
+            {/* DeepSeek */}
+            <div className="bg-slate-800/50 backdrop-blur border border-red-700/50 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold text-lg">DeepSeek V3</h3>
-                <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">Cheapest</span>
+                <span className="text-xs bg-red-500/20 text-red-300 px-2 py-1 rounded-full">⚠️ Risky Solo</span>
               </div>
 
               <div className="space-y-3">
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">💰 Cost</span>
-                    <span className="font-bold text-green-400">0.04x</span>
+                    <span className="font-bold text-green-400">0.04x ✓</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
                     <div className="h-full bg-green-500 rounded-full" style={{ width: '4%' }}></div>
@@ -94,37 +94,41 @@ export default function LandingPage() {
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">⚡ Speed</span>
-                    <span className="font-bold text-orange-400">45/100</span>
+                    <span className="font-bold text-red-400">45/100 ✗</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-orange-500 rounded-full" style={{ width: '45%' }}></div>
+                    <div className="h-full bg-red-500 rounded-full" style={{ width: '45%' }}></div>
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">🎯 Quality</span>
-                    <span className="font-bold text-orange-400">70/100</span>
+                    <span className="font-bold text-red-400">70/100 ✗</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-orange-500 rounded-full" style={{ width: '70%' }}></div>
+                    <div className="h-full bg-red-500 rounded-full" style={{ width: '70%' }}></div>
                   </div>
                 </div>
               </div>
+
+              <div className="mt-4 p-2 bg-red-900/20 border border-red-700/30 rounded text-xs text-red-200">
+                100% = Slow, lower quality
+              </div>
             </div>
 
-            {/* GPT-4o - Balanced */}
-            <div className="bg-slate-800/50 backdrop-blur border-2 border-blue-500 rounded-xl p-6">
+            {/* GPT-4o */}
+            <div className="bg-slate-800/50 backdrop-blur border border-yellow-700/50 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold text-lg">GPT-4o</h3>
-                <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">Best Balance</span>
+                <span className="text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full">⚠️ Expensive</span>
               </div>
 
               <div className="space-y-3">
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">💰 Cost</span>
-                    <span className="font-bold text-yellow-400">0.75x</span>
+                    <span className="font-bold text-yellow-400">0.75x ⚠️</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
                     <div className="h-full bg-yellow-500 rounded-full" style={{ width: '75%' }}></div>
@@ -134,37 +138,41 @@ export default function LandingPage() {
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">⚡ Speed</span>
-                    <span className="font-bold text-blue-400">95/100</span>
+                    <span className="font-bold text-green-400">95/100 ✓</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full" style={{ width: '95%' }}></div>
+                    <div className="h-full bg-green-500 rounded-full" style={{ width: '95%' }}></div>
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">🎯 Quality</span>
-                    <span className="font-bold text-blue-400">95/100</span>
+                    <span className="font-bold text-green-400">95/100 ✓</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full" style={{ width: '95%' }}></div>
+                    <div className="h-full bg-green-500 rounded-full" style={{ width: '95%' }}></div>
                   </div>
                 </div>
               </div>
+
+              <div className="mt-4 p-2 bg-yellow-900/20 border border-yellow-700/30 rounded text-xs text-yellow-200">
+                100% = Burning budget
+              </div>
             </div>
 
-            {/* Claude Sonnet - Highest Quality */}
-            <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6">
+            {/* Claude Sonnet */}
+            <div className="bg-slate-800/50 backdrop-blur border border-red-700/50 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-lg">Claude Sonnet 4.5</h3>
-                <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full">Best Quality</span>
+                <h3 className="font-bold text-lg">Sonnet 4.5</h3>
+                <span className="text-xs bg-red-500/20 text-red-300 px-2 py-1 rounded-full">⚠️ Too Costly</span>
               </div>
 
               <div className="space-y-3">
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">💰 Cost</span>
-                    <span className="font-bold text-red-400">1.0x</span>
+                    <span className="font-bold text-red-400">1.0x ✗</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
                     <div className="h-full bg-red-500 rounded-full" style={{ width: '100%' }}></div>
@@ -174,35 +182,54 @@ export default function LandingPage() {
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">⚡ Speed</span>
-                    <span className="font-bold text-purple-400">85/100</span>
+                    <span className="font-bold text-yellow-400">85/100 ⚠️</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-purple-500 rounded-full" style={{ width: '85%' }}></div>
+                    <div className="h-full bg-yellow-500 rounded-full" style={{ width: '85%' }}></div>
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-400">🎯 Quality</span>
-                    <span className="font-bold text-purple-400">98/100</span>
+                    <span className="font-bold text-green-400">98/100 ✓</span>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-purple-500 rounded-full" style={{ width: '98%' }}></div>
+                    <div className="h-full bg-green-500 rounded-full" style={{ width: '98%' }}></div>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-4 p-2 bg-red-900/20 border border-red-700/30 rounded text-xs text-red-200">
+                100% = Most expensive
               </div>
             </div>
           </div>
 
-          <div className="bg-blue-900/30 border border-blue-700/50 rounded-xl p-6 text-center">
-            <p className="text-lg text-blue-100 mb-2">
-              <strong className="text-white">Datoad's Smart Routing</strong> uses the right model for each task
+          <div className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] border-2 border-[#4FA9A0] rounded-2xl p-8 text-center">
+            <h3 className="text-2xl font-bold mb-3 text-white">✨ The Solution: Intelligent Model Mix</h3>
+            <p className="text-lg text-white/90 mb-4">
+              Datoad routes each query to the <strong>optimal model</strong> — not just one
             </p>
-            <p className="text-sm text-slate-300">
-              Simple queries → DeepSeek • Complex reasoning → Claude • Everything else → Optimized mix
-            </p>
-            <p className="text-xs text-slate-400 mt-3">
-              Result: <strong className="text-white">30-45% cost savings</strong> while maintaining <strong className="text-white">90+ quality</strong> and <strong className="text-white">85+ speed</strong>
+            <div className="grid md:grid-cols-3 gap-4 text-sm mb-4">
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur">
+                <div className="font-bold mb-1 text-white">Simple Queries</div>
+                <div className="text-white/90">→ DeepSeek, Mistral</div>
+                <div className="text-xs text-white/75 mt-1">Save 90%+</div>
+              </div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur">
+                <div className="font-bold mb-1 text-white">Balanced Tasks</div>
+                <div className="text-white/90">→ GPT-4o, Gemini</div>
+                <div className="text-xs text-white/75 mt-1">Fast & high quality</div>
+              </div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur">
+                <div className="font-bold mb-1 text-white">Complex Reasoning</div>
+                <div className="text-white/90">→ Claude, GPT-4o</div>
+                <div className="text-xs text-white/75 mt-1">Quality > cost</div>
+              </div>
+            </div>
+            <p className="text-sm text-white font-semibold">
+              Result: 30-45% savings • 90+ quality • 85+ speed
             </p>
           </div>
         </div>

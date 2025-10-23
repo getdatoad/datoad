@@ -278,6 +278,72 @@ export default function LandingPage() {
           </div>
         </div>
 
+        {/* Flow Animation */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A4C] mb-4">
+            How Datoad Works
+          </h2>
+          <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+            Plug in between your app and LLM providers — no code changes needed
+          </p>
+
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-[#4A9B9B]/10">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+              {/* Your App */}
+              <div className="flex-1 max-w-[200px]">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                  <div className="text-4xl mb-2">💻</div>
+                  <div className="font-bold text-slate-900 mb-1">Your App</div>
+                  <div className="text-xs text-slate-600">Makes LLM request</div>
+                </div>
+              </div>
+
+              {/* Arrow 1 */}
+              <div className="flex items-center justify-center">
+                <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse hidden md:block" />
+                <div className="md:hidden rotate-90">
+                  <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse" />
+                </div>
+              </div>
+
+              {/* Datoad */}
+              <div className="flex-1 max-w-[200px]">
+                <div className="bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-xl p-6 text-center border-2 border-[#4A9B9B] shadow-lg transform hover:scale-105 transition-transform">
+                  <div className="text-4xl mb-2">🧠</div>
+                  <div className="font-bold text-white mb-1">Datoad</div>
+                  <div className="text-xs text-white/90">Analyzes & routes</div>
+                </div>
+              </div>
+
+              {/* Arrow 2 */}
+              <div className="flex items-center justify-center">
+                <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse hidden md:block" />
+                <div className="md:hidden rotate-90">
+                  <ArrowRight className="w-8 h-8 text-[#4A9B9B] animate-pulse" />
+                </div>
+              </div>
+
+              {/* Model Providers */}
+              <div className="flex-1 max-w-[200px]">
+                <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 text-center border-2 border-slate-300">
+                  <div className="text-4xl mb-2">⚡</div>
+                  <div className="font-bold text-slate-900 mb-1">Providers</div>
+                  <div className="text-xs text-slate-600">OpenAI, Claude, etc.</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-[#E5F5F4] px-4 py-2 rounded-full border border-[#4A9B9B]/30">
+                <CheckCircle className="w-4 h-4 text-[#4A9B9B]" />
+                <span className="text-sm font-semibold text-[#1E3A4C]">
+                  Drop-in replacement — swap API endpoint and you're done
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Features */}
         <div className="grid md:grid-cols-2 gap-12 mb-20">
           <div className="flex gap-6">

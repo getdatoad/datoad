@@ -187,14 +187,26 @@ export default function DatoadCalculator() {
                 Workload <span className="font-bold">{topWorkload[1].toFixed(0)}% {topWorkload[0].replace('_', ' ')}</span>
               </div>
               <div className="flex gap-4 mt-2">
-                <div className="text-xs">
+                <div className="text-xs flex items-center gap-1">
                   ⚡ <span className="font-semibold">Speed:</span> <span className="font-mono font-bold text-blue-900">{results.avgSpeed}/100</span>
+                  <Tooltip
+                    id="speed-metric"
+                    content={`Speed Score (0-100): Average tokens/sec throughput of your model mix.\nHigher = faster response times.\nYour mix: ${results.avgSpeed.toFixed(0)}/100`}
+                  />
                 </div>
-                <div className="text-xs">
+                <div className="text-xs flex items-center gap-1">
                   🎯 <span className="font-semibold">Quality:</span> <span className="font-mono font-bold text-blue-900">{results.avgQuality}/100</span>
+                  <Tooltip
+                    id="quality-metric"
+                    content={`Quality Score (0-100): Accuracy and reasoning capability.\nHigher = better outputs.\nYour mix: ${results.avgQuality.toFixed(0)}/100`}
+                  />
                 </div>
-                <div className="text-xs">
+                <div className="text-xs flex items-center gap-1">
                   💰 <span className="font-semibold">Cost Index:</span> <span className="font-mono font-bold text-blue-900">{(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x</span>
+                  <Tooltip
+                    id="cost-index"
+                    content={`Cost Index: Relative cost vs baseline.\n1.0x = Claude Sonnet 4.5 (most expensive)\n0.04x = DeepSeek V3 (cheapest)\nYour mix: ${(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x`}
+                  />
                 </div>
               </div>
               <div className="text-xs text-blue-600 mt-1 italic">
@@ -325,7 +337,7 @@ export default function DatoadCalculator() {
             <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 text-white">
               <div className="flex items-center gap-2 mb-4">
                 <TrendingDown className="w-6 h-6" />
-                <h2 className="text-2xl font-bold">Your Verified Savings</h2>
+                <h2 className="text-2xl font-bold">Your Projected Verified Savings</h2>
               </div>
 
               <div className="space-y-4">

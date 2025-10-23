@@ -11,6 +11,7 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/calculator', label: 'Calculator' },
+    { path: '/blog', label: 'Blog' },
     { path: '/onepager', label: 'One Pager' },
   ];
 

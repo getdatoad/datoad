@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingDown, Shield, BarChart3, ArrowRight, CheckCircle, Calculator } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import ContactForm from '../components/ContactForm';
 
 export default function LandingPage() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [contactFormType, setContactFormType] = useState('pilot');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +18,11 @@ export default function LandingPage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const openContactForm = (type = 'pilot') => {
+    setContactFormType(type);
+    setIsContactFormOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
@@ -66,33 +74,30 @@ export default function LandingPage() {
               Calculate Your Savings
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a
-              href="mailto:diegocastellanos@datoad.dev?subject=30-Day%20Pilot%20Request&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%0AMain%20use%20cases%3A%0A%0AThanks!"
+            <button
+              onClick={() => openContactForm('demo')}
               className="bg-white text-[#1E3A4C] px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
               Book a Demo
-            </a>
+            </button>
           </div>
 
-          {/* Testimonial */}
-          <div className="max-w-2xl mx-auto bg-white border-2 border-[#4A9B9B]/30 rounded-2xl p-6 shadow-lg">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  JD
-                </div>
+          {/* Pilot Program Call */}
+          <div className="max-w-2xl mx-auto bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-2xl p-6 shadow-lg">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-full text-white font-bold text-xl mb-3">
+                🚀
               </div>
-              <div className="flex-1 text-left">
-                <p className="text-lg text-[#1E3A4C] italic mb-2">
-                  "Cut 38% in 30 days — without touching a single line of code."
-                </p>
-                <p className="text-sm text-slate-600 font-medium">
-                  — John Davis, Engineering Lead
-                </p>
-                <p className="text-xs text-slate-500">
-                  B2B SaaS Platform, $50k/mo LLM spend
-                </p>
-              </div>
+              <h3 className="text-lg font-bold text-[#1E3A4C] mb-2">
+                Looking for Pilot Partners
+              </h3>
+              <p className="text-sm text-slate-600 mb-3">
+                We're onboarding 2 companies this quarter for a <strong>free 30-day pilot</strong>.
+                Help us validate real-world savings and get early access to the platform.
+              </p>
+              <p className="text-xs text-slate-500">
+                Ideal for: Teams spending $10k+/month on LLM APIs
+              </p>
             </div>
           </div>
         </div>
@@ -531,12 +536,12 @@ export default function LandingPage() {
             >
               Calculate Your Savings
             </Link>
-            <a
-              href="mailto:diegocastellanos@datoad.dev?subject=30-Day%20Pilot%20Request&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%0AMain%20use%20cases%3A%0A%0AThanks!"
+            <button
+              onClick={() => openContactForm('pilot')}
               className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
-              Book a Demo
-            </a>
+              Request Pilot Access
+            </button>
           </div>
 
           <p className="mt-8 text-sm opacity-75">
@@ -593,6 +598,13 @@ export default function LandingPage() {
           <p className="text-xs mt-4 text-slate-400">© 2025 Datoad, Inc. All rights reserved.</p>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        formType={contactFormType}
+      />
     </div>
   );
 }

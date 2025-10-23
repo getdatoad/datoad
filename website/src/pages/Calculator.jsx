@@ -29,17 +29,18 @@ export default function DatoadCalculator() {
       doc_summarization: spend * (workload.doc_summarization / 100)
     };
 
-    const optimizedCost =
+    const optimizedCost = Math.round(
       workloadCost.simple_qa * 0.40 +
       workloadCost.sql_analytics * 0.30 +
       workloadCost.complex_reasoning * 1.0 +
-      workloadCost.doc_summarization * 0.40;
+      workloadCost.doc_summarization * 0.40
+    );
 
-    const totalSavings = baseline - optimizedCost;
-    const savingsPct = (totalSavings / baseline) * 100;
-    const datoadFee = totalSavings * 0.15;
-    const netBenefit = totalSavings - datoadFee;
-    const roi = netBenefit / datoadFee;
+    const totalSavings = Math.round(baseline - optimizedCost);
+    const savingsPct = baseline > 0 ? (totalSavings / baseline) * 100 : 0;
+    const datoadFee = Math.round(totalSavings * 0.15);
+    const netBenefit = Math.round(totalSavings - datoadFee);
+    const roi = datoadFee > 0 ? netBenefit / datoadFee : 0;
 
     const optimizedMix = {
       'gpt-4': 20,

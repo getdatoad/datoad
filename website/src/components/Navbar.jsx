@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Zap, Menu, X } from 'lucide-react';
+import ContactForm from './ContactForm';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = React.useState(false);
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
@@ -44,19 +46,19 @@ export default function Navbar() {
                 to={link.path}
                 className={`font-medium transition-colors ${
                   isActive(link.path)
-                    ? 'text-blue-600'
+                    ? 'text-[#4A9B9B]'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href="mailto:diegocastellanos@datoad.dev?subject=Demo%20Request&body=Hi%20Diego%2C%0A%0AI'd%20like%20to%20schedule%20a%20demo%20of%20Datoad.%0A%0ACompany%3A%0ARole%3A%0APreferred%20date/time%3A%0A%0AThanks!"
-              className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all"
+            <button
+              onClick={() => setIsContactFormOpen(true)}
+              className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105"
             >
               Book Demo
-            </a>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -83,24 +85,33 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`font-medium px-4 py-2 rounded-lg transition-colors ${
                     isActive(link.path)
-                      ? 'bg-blue-50 text-blue-600'
+                      ? 'bg-[#4A9B9B]/10 text-[#4A9B9B]'
                       : 'text-slate-600 hover:bg-slate-50'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="mailto:diegocastellanos@datoad.dev?subject=Demo%20Request&body=Hi%20Diego%2C%0A%0AI'd%20like%20to%20schedule%20a%20demo%20of%20Datoad.%0A%0ACompany%3A%0ARole%3A%0APreferred%20date/time%3A%0A%0AThanks!"
-                className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-2 rounded-lg font-semibold text-center"
-                onClick={() => setIsOpen(false)}
+              <button
+                onClick={() => {
+                  setIsContactFormOpen(true);
+                  setIsOpen(false);
+                }}
+                className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-6 py-2 rounded-lg font-semibold text-center"
               >
                 Book Demo
-              </a>
+              </button>
             </div>
           </div>
         )}
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        formType="demo"
+      />
     </nav>
   );
 }

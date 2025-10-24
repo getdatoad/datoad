@@ -181,7 +181,7 @@ export default function LandingPage() {
 
         {/* Model Trade-offs Section */}
         <div className="bg-gradient-to-br from-[#1E3A4C] to-[#2C4A5E] rounded-2xl shadow-2xl p-12 mb-20 text-white">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4" id="problem">
             The Problem: No Single Model is Perfect
           </h2>
           <p className="text-center text-slate-300 mb-3 max-w-3xl mx-auto">
@@ -334,7 +334,7 @@ export default function LandingPage() {
 
         {/* Flow Animation */}
         <div className="mb-24">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A4C] mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A4C] mb-4" id="how-it-works">
             How Datoad Works
           </h2>
           <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
@@ -398,6 +398,64 @@ export default function LandingPage() {
             </div>
           </div>
 
+          {/* Technical Deep Dive */}
+          <div className="mt-12 max-w-4xl mx-auto">
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 border-2 border-[#4A9B9B]/20 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-6 flex items-center gap-3" id="routing-algorithm">
+                <span className="text-3xl">🧠</span>
+                <span>Under the Hood: The Routing Algorithm</span>
+              </h3>
+
+              <div className="space-y-4 text-slate-700">
+                <p className="leading-relaxed">
+                  Datoad's cognitive router uses a <strong>multi-factor classification model</strong> to analyze every incoming request in real-time:
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-4 mt-4">
+                  <div className="bg-white rounded-xl p-4 border border-[#4A9B9B]/10">
+                    <h4 className="font-bold text-[#1E3A4C] mb-2 flex items-center gap-2">
+                      <span className="text-lg">📊</span>
+                      Query Complexity Analysis
+                    </h4>
+                    <ul className="text-sm space-y-1 text-slate-600">
+                      <li>• Prompt length & structure</li>
+                      <li>• Required reasoning depth</li>
+                      <li>• Context window needs</li>
+                      <li>• Output format complexity</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-4 border border-[#4A9B9B]/10">
+                    <h4 className="font-bold text-[#1E3A4C] mb-2 flex items-center gap-2">
+                      <span className="text-lg">⚖️</span>
+                      Cost-Quality Optimization
+                    </h4>
+                    <ul className="text-sm space-y-1 text-slate-600">
+                      <li>• Real-time provider pricing</li>
+                      <li>• Quality threshold requirements</li>
+                      <li>• Latency constraints</li>
+                      <li>• Historical performance data</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-[#4A9B9B]/5 rounded-xl p-5 mt-4 border-l-4 border-[#4A9B9B]">
+                  <p className="text-sm font-semibold text-[#1E3A4C] mb-2">Decision Engine:</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    For each query, the router calculates a <strong>quality-cost score</strong> across all available models.
+                    Simple tasks (e.g., JSON parsing, translation) route to efficient models like DeepSeek or Mistral.
+                    Complex reasoning (e.g., code generation, analysis) uses premium models like Claude or GPT-4o.
+                    The algorithm continuously learns from your usage patterns to optimize future routing decisions.
+                  </p>
+                </div>
+
+                <p className="text-sm text-slate-600 italic mt-4">
+                  <strong>Technical note:</strong> All routing decisions happen in &lt;10ms, adding negligible latency to your requests.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Privacy & Security Note */}
           <div className="mt-8 max-w-3xl mx-auto">
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
@@ -415,7 +473,11 @@ export default function LandingPage() {
         </div>
 
         {/* Features */}
-        <div className="grid md:grid-cols-2 gap-12 mb-20">
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A4C] mb-12" id="features">
+            Key Features
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12">
           <div className="flex gap-6">
             <div className="flex-shrink-0">
               <div className="w-12 h-12 bg-[#E5F5F4] rounded-xl flex items-center justify-center">
@@ -423,7 +485,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-2">Cognitive Routing</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-2" id="cognitive-routing">Cognitive Routing</h3>
               <p className="text-sm font-semibold text-[#4A9B9B] mb-3">
                 LLM routing meets cost & performance analytics.
               </p>
@@ -441,7 +503,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3">Zero Code Changes</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3" id="zero-code-changes">Zero Code Changes</h3>
               <p className="text-slate-600 leading-relaxed">
                 Just swap your API endpoint. Datoad sits between your application and LLM providers,
                 working seamlessly with OpenAI, Anthropic, Google, AWS, and Azure.
@@ -456,7 +518,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3">Real-Time Analytics</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3" id="analytics">Real-Time Analytics</h3>
               <p className="text-slate-600 leading-relaxed">
                 Track your savings vs. baseline in real-time. See exactly which queries were optimized
                 and how much you're saving per request type.
@@ -471,18 +533,19 @@ export default function LandingPage() {
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3">Quality First</h3>
+              <h3 className="text-2xl font-bold text-[#1E3A4C] mb-3" id="quality-first">Quality First</h3>
               <p className="text-slate-600 leading-relaxed">
                 We never compromise quality for cost. SQL queries are validated with dry-run
                 cost estimation. Complex reasoning stays on premium models.
               </p>
             </div>
           </div>
+          </div>
         </div>
 
         {/* How It Works */}
         <div className="bg-white rounded-3xl shadow-2xl p-12 mb-20 border border-[#4A9B9B]/10">
-          <h2 className="text-4xl font-bold text-center text-[#1E3A4C] mb-12">How It Works</h2>
+          <h2 className="text-4xl font-bold text-center text-[#1E3A4C] mb-12" id="implementation">How It Works</h2>
 
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
@@ -519,9 +582,48 @@ export default function LandingPage() {
           </div>
         </div>
 
+        {/* Trust Section */}
+        <div className="bg-gradient-to-br from-[#4A9B9B]/5 to-[#7BC4BD]/5 rounded-2xl p-10 mb-20 border border-[#4A9B9B]/20">
+          <h2 className="text-3xl font-bold text-center text-[#1E3A4C] mb-3" id="trusted-by">
+            Trusted by Teams Optimizing at Scale
+          </h2>
+          <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
+            Ideal for engineering teams spending <strong>$10k+/month</strong> on LLM APIs who want to cut costs without compromising quality
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl p-6 shadow-md border border-[#4A9B9B]/10 text-center">
+              <div className="text-4xl mb-3">🏦</div>
+              <h3 className="font-bold text-[#1E3A4C] mb-2">Fintech & Banking</h3>
+              <p className="text-sm text-slate-600">Document processing, fraud detection, customer support automation</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-md border border-[#4A9B9B]/10 text-center">
+              <div className="text-4xl mb-3">🏥</div>
+              <h3 className="font-bold text-[#1E3A4C] mb-2">Healthcare & Research</h3>
+              <p className="text-sm text-slate-600">Clinical documentation, research analysis, medical coding</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-md border border-[#4A9B9B]/10 text-center">
+              <div className="text-4xl mb-3">🛒</div>
+              <h3 className="font-bold text-[#1E3A4C] mb-2">E-commerce & SaaS</h3>
+              <p className="text-sm text-slate-600">Product recommendations, chatbots, content generation</p>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm text-slate-600 font-medium">
+              <span className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-[#4A9B9B]/20">
+                <span className="text-lg">✓</span>
+                <span>Enterprise-grade security • SOC2 Type II in progress • GDPR/CCPA compliant</span>
+              </span>
+            </p>
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="bg-gradient-to-r from-[#1E3A4C] to-[#2C4A5E] rounded-3xl shadow-2xl p-12 text-center text-white">
-          <h2 className="text-4xl font-bold mb-4">Start optimizing today</h2>
+          <h2 className="text-4xl font-bold mb-4">Start Optimizing Today</h2>
           <p className="text-xl mb-2 opacity-90">
             Free for 30 days, no contract, no code.
           </p>

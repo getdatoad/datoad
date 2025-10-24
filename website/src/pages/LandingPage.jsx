@@ -540,6 +540,7 @@ export default function LandingPage() {
               </p>
             </div>
           </div>
+          </div>
         </div>
 
         {/* How It Works */}

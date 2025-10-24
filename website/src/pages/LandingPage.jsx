@@ -68,15 +68,24 @@ export default function LandingPage() {
           </p>
 
           <div className="flex gap-4 justify-center flex-wrap mb-12">
-            <Link
-              to="/calculator"
-              className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2"
-            >
-              💰 Calculate My Savings
-              <ArrowRight className="w-5 h-5" />
-            </Link>
             <button
-              onClick={() => openContactForm('demo')}
+              onClick={() => {
+                const pilotForm = document.getElementById('pilot-form');
+                if (pilotForm) {
+                  pilotForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+              }}
+              className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-10 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2"
+            >
+              🚀 Start Free 30-Day Pilot
+            </button>
+            <button
+              onClick={() => {
+                if (window.Calendly) {
+                  window.Calendly.initPopupWidget({url: 'https://calendly.com/diegocastellanos-datoad/30min'});
+                }
+                return false;
+              }}
               className="bg-white text-[#1E3A4C] px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
               📞 Schedule 15-min Intro Call
@@ -84,7 +93,7 @@ export default function LandingPage() {
           </div>
 
           {/* Pilot Program Call + Quick Contact Form */}
-          <div className="max-w-2xl mx-auto bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-2xl p-8 shadow-lg">
+          <div id="pilot-form" className="max-w-2xl mx-auto bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-2xl p-8 shadow-lg">
             <div className="text-center mb-6">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-full text-white font-bold text-xl mb-3">
                 🚀
@@ -153,6 +162,15 @@ export default function LandingPage() {
                 🚀 Submit Pilot Request
               </button>
             </form>
+
+            {/* Response Time Message */}
+            <div className="mt-6 pt-4 border-t border-[#4A9B9B]/20 text-center">
+              <p className="text-sm text-slate-600">
+                <span className="font-semibold text-[#1E3A4C]">You'll get a reply within 24 hours.</span>
+                <br />
+                <span className="text-xs text-slate-500">We only onboard 2 pilots per quarter.</span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -686,17 +704,30 @@ export default function LandingPage() {
           </p>
 
           <div className="flex gap-4 justify-center flex-wrap">
-            <Link
-              to="/calculator"
-              className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
-            >
-              💰 Calculate My Savings
-            </Link>
             <button
-              onClick={() => openContactForm('pilot')}
-              className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
+              onClick={() => {
+                const pilotForm = document.getElementById('pilot-form');
+                if (pilotForm) {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setTimeout(() => {
+                    pilotForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }, 300);
+                }
+              }}
+              className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-10 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
             >
               🚀 Start Free 30-Day Pilot
+            </button>
+            <button
+              onClick={() => {
+                if (window.Calendly) {
+                  window.Calendly.initPopupWidget({url: 'https://calendly.com/diegocastellanos-datoad/30min'});
+                }
+                return false;
+              }}
+              className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
+            >
+              📞 Schedule 15-min Intro Call
             </button>
           </div>
 

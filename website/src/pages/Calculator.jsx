@@ -235,41 +235,62 @@ export default function DatoadCalculator() {
         </div>
 
         {/* Sticky Input Summary */}
-        <div className="bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-lg p-4 mb-6 shadow-sm">
-          <div className="flex items-start gap-3">
-            <Info className="w-5 h-5 text-[#4A9B9B] mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-              <div className="text-sm font-semibold text-[#1E3A4C] mb-1">Your Current Mix Performance</div>
-              <div className="text-sm text-slate-700">
-                Monthly spend <span className="font-mono font-bold">${monthlySpend ? Number(monthlySpend).toLocaleString() : '0'}</span>
-                {' · '}
-                Model mix <span className="font-bold">{dominantModel[1].toFixed(0)}% {dominantModel[0]}</span>
-                {' · '}
-                Workload <span className="font-bold">{topWorkload[1].toFixed(0)}% {topWorkload[0].replace('_', ' ')}</span>
-              </div>
-              <div className="flex gap-4 mt-2">
-                <div className="text-xs flex items-center gap-1">
-                  ⚡ <span className="font-semibold">Speed:</span> <span className="font-mono font-bold text-[#1E3A4C]">{results.avgSpeed}/100</span>
-                  <Tooltip
-                    id="speed-metric"
-                    content={`Speed Score (0-100): Average tokens/sec throughput of your model mix.\nHigher = faster response times.\nYour mix: ${results.avgSpeed.toFixed(0)}/100`}
-                  />
+        <div className="bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-lg p-3 md:p-4 mb-6 shadow-sm">
+          <div className="flex items-start gap-2 md:gap-3">
+            <Info className="w-4 h-4 md:w-5 md:h-5 text-[#4A9B9B] mt-0.5 flex-shrink-0" />
+            <div className="flex-1 min-w-0">
+              <div className="text-xs md:text-sm font-semibold text-[#1E3A4C] mb-1">Your Current Mix Performance</div>
+
+              {/* Mobile: Vertical layout */}
+              <div className="md:hidden space-y-1 text-xs text-slate-700">
+                <div className="flex justify-between items-center">
+                  <span>Monthly spend:</span>
+                  <span className="font-mono font-bold">${monthlySpend ? Number(monthlySpend).toLocaleString() : '0'}</span>
                 </div>
-                <div className="text-xs flex items-center gap-1">
-                  🎯 <span className="font-semibold">Quality:</span> <span className="font-mono font-bold text-[#1E3A4C]">{results.avgQuality}/100</span>
-                  <Tooltip
-                    id="quality-metric"
-                    content={`Quality Score (0-100): Accuracy and reasoning capability.\nHigher = better outputs.\nYour mix: ${results.avgQuality.toFixed(0)}/100`}
-                  />
+                <div className="flex justify-between items-center">
+                  <span>Speed:</span>
+                  <span className="font-mono font-bold text-[#1E3A4C]">{results.avgSpeed}/100</span>
                 </div>
-                <div className="text-xs flex items-center gap-1">
-                  💰 <span className="font-semibold">Cost Index:</span> <span className="font-mono font-bold text-[#1E3A4C]">{(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x</span>
-                  <Tooltip
-                    id="cost-index"
-                    content={`Cost Index: Relative cost vs baseline.\n1.0x = Claude Sonnet 4.5 (most expensive)\n0.04x = DeepSeek V3 (cheapest)\nYour mix: ${(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x`}
-                  />
+                <div className="flex justify-between items-center">
+                  <span>Quality:</span>
+                  <span className="font-mono font-bold text-[#1E3A4C]">{results.avgQuality}/100</span>
                 </div>
               </div>
+
+              {/* Desktop: Horizontal layout */}
+              <div className="hidden md:block">
+                <div className="text-sm text-slate-700 mb-2">
+                  Monthly spend <span className="font-mono font-bold">${monthlySpend ? Number(monthlySpend).toLocaleString() : '0'}</span>
+                  {' · '}
+                  Model mix <span className="font-bold">{dominantModel[1].toFixed(0)}% {dominantModel[0]}</span>
+                  {' · '}
+                  Workload <span className="font-bold">{topWorkload[1].toFixed(0)}% {topWorkload[0].replace('_', ' ')}</span>
+                </div>
+                <div className="flex flex-wrap gap-4 mt-2">
+                  <div className="text-xs flex items-center gap-1">
+                    ⚡ <span className="font-semibold">Speed:</span> <span className="font-mono font-bold text-[#1E3A4C]">{results.avgSpeed}/100</span>
+                    <Tooltip
+                      id="speed-metric"
+                      content={`Speed Score (0-100): Average tokens/sec throughput of your model mix.\nHigher = faster response times.\nYour mix: ${results.avgSpeed.toFixed(0)}/100`}
+                    />
+                  </div>
+                  <div className="text-xs flex items-center gap-1">
+                    🎯 <span className="font-semibold">Quality:</span> <span className="font-mono font-bold text-[#1E3A4C]">{results.avgQuality}/100</span>
+                    <Tooltip
+                      id="quality-metric"
+                      content={`Quality Score (0-100): Accuracy and reasoning capability.\nHigher = better outputs.\nYour mix: ${results.avgQuality.toFixed(0)}/100`}
+                    />
+                  </div>
+                  <div className="text-xs flex items-center gap-1">
+                    💰 <span className="font-semibold">Cost Index:</span> <span className="font-mono font-bold text-[#1E3A4C]">{(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x</span>
+                    <Tooltip
+                      id="cost-index"
+                      content={`Cost Index: Relative cost vs baseline.\n1.0x = Claude Sonnet 4.5 (most expensive)\n0.04x = DeepSeek V3 (cheapest)\nYour mix: ${(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x`}
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="text-xs text-[#4A9B9B] mt-1 italic">
                 Adjust the sliders below to see your personalized savings
               </div>

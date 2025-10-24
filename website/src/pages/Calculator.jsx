@@ -826,7 +826,12 @@ export default function DatoadCalculator() {
 
               <div className="space-y-3">
                 <button
-                  onClick={() => openContactForm('demo')}
+                  onClick={() => {
+                    if (window.Calendly) {
+                      window.Calendly.initPopupWidget({url: 'https://calendly.com/diegocastellanos-datoad/30min'});
+                    }
+                    return false;
+                  }}
                   className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] hover:shadow-lg text-white font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105 w-full block text-center"
                 >
                   📞 Schedule 15-min Intro Call

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import ContactForm from '../components/ContactForm';
 
 const blogPosts = [
   {
@@ -34,6 +35,8 @@ const blogPosts = [
 ];
 
 export default function Blog() {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
       <Navbar />
@@ -110,14 +113,21 @@ export default function Blog() {
           <p className="text-slate-600 mb-6">
             We're publishing new technical guides and case studies weekly.
           </p>
-          <a
-            href="mailto:diegocastellanos@datoad.dev?subject=Blog%20Topic%20Suggestion"
+          <button
+            onClick={() => setIsContactFormOpen(true)}
             className="inline-flex items-center gap-2 text-[#4A9B9B] font-semibold hover:underline"
           >
             Suggest a topic →
-          </a>
+          </button>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        formType="demo"
+      />
     </div>
   );
 }

@@ -1,8 +1,17 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { DollarSign, TrendingDown, Zap, PieChart, Info, CheckCircle, Download } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import ContactForm from '../components/ContactForm';
 
 export default function DatoadCalculator() {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [contactFormType, setContactFormType] = useState('demo');
+
+  const openContactForm = (type = 'demo') => {
+    setContactFormType(type);
+    setIsContactFormOpen(true);
+  };
+
   // Load initial values from localStorage or use defaults
   const [monthlySpend, setMonthlySpend] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -226,12 +235,12 @@ export default function DatoadCalculator() {
         </div>
 
         {/* Sticky Input Summary */}
-        <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-6 shadow-sm">
+        <div className="bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-lg p-4 mb-6 shadow-sm">
           <div className="flex items-start gap-3">
-            <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+            <Info className="w-5 h-5 text-[#4A9B9B] mt-0.5 flex-shrink-0" />
             <div className="flex-1">
-              <div className="text-sm font-semibold text-blue-900 mb-1">Your Current Mix Performance</div>
-              <div className="text-sm text-blue-800">
+              <div className="text-sm font-semibold text-[#1E3A4C] mb-1">Your Current Mix Performance</div>
+              <div className="text-sm text-slate-700">
                 Monthly spend <span className="font-mono font-bold">${monthlySpend ? Number(monthlySpend).toLocaleString() : '0'}</span>
                 {' · '}
                 Model mix <span className="font-bold">{dominantModel[1].toFixed(0)}% {dominantModel[0]}</span>
@@ -240,28 +249,28 @@ export default function DatoadCalculator() {
               </div>
               <div className="flex gap-4 mt-2">
                 <div className="text-xs flex items-center gap-1">
-                  ⚡ <span className="font-semibold">Speed:</span> <span className="font-mono font-bold text-blue-900">{results.avgSpeed}/100</span>
+                  ⚡ <span className="font-semibold">Speed:</span> <span className="font-mono font-bold text-[#1E3A4C]">{results.avgSpeed}/100</span>
                   <Tooltip
                     id="speed-metric"
                     content={`Speed Score (0-100): Average tokens/sec throughput of your model mix.\nHigher = faster response times.\nYour mix: ${results.avgSpeed.toFixed(0)}/100`}
                   />
                 </div>
                 <div className="text-xs flex items-center gap-1">
-                  🎯 <span className="font-semibold">Quality:</span> <span className="font-mono font-bold text-blue-900">{results.avgQuality}/100</span>
+                  🎯 <span className="font-semibold">Quality:</span> <span className="font-mono font-bold text-[#1E3A4C]">{results.avgQuality}/100</span>
                   <Tooltip
                     id="quality-metric"
                     content={`Quality Score (0-100): Accuracy and reasoning capability.\nHigher = better outputs.\nYour mix: ${results.avgQuality.toFixed(0)}/100`}
                   />
                 </div>
                 <div className="text-xs flex items-center gap-1">
-                  💰 <span className="font-semibold">Cost Index:</span> <span className="font-mono font-bold text-blue-900">{(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x</span>
+                  💰 <span className="font-semibold">Cost Index:</span> <span className="font-mono font-bold text-[#1E3A4C]">{(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x</span>
                   <Tooltip
                     id="cost-index"
                     content={`Cost Index: Relative cost vs baseline.\n1.0x = Claude Sonnet 4.5 (most expensive)\n0.04x = DeepSeek V3 (cheapest)\nYour mix: ${(results.baseline / (Number(monthlySpend) || 1)).toFixed(2)}x`}
                   />
                 </div>
               </div>
-              <div className="text-xs text-blue-600 mt-1 italic">
+              <div className="text-xs text-[#4A9B9B] mt-1 italic">
                 Adjust the sliders below to see your personalized savings
               </div>
             </div>
@@ -290,7 +299,7 @@ export default function DatoadCalculator() {
                   setMonthlySpend(value);
                 }}
                 placeholder="50000"
-                className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg text-lg font-mono focus:border-blue-500 focus:outline-none"
+                className="w-full px-4 py-3 border-2 border-slate-300 rounded-lg text-lg font-mono focus:border-[#4A9B9B] focus:outline-none"
               />
 
               {/* Quick Estimate Buttons */}
@@ -795,20 +804,20 @@ export default function DatoadCalculator() {
               </p>
 
               <div className="space-y-3">
-                <a
-                  href="mailto:diegocastellanos@datoad.dev?subject=I'd%20like%20to%20schedule%20a%20call&body=Hi%20Diego%2C%0A%0AI'd%20like%20to%20schedule%20a%2015-minute%20intro%20call%20to%20learn%20more%20about%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%20%0ABest%20time%20to%20chat%3A%0A%0AThanks!"
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full block text-center"
+                <button
+                  onClick={() => openContactForm('demo')}
+                  className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] hover:shadow-lg text-white font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105 w-full block text-center"
                 >
                   Schedule 15min Intro Call
-                </a>
+                </button>
 
-                <a
-                  href="mailto:diegocastellanos@datoad.dev?subject=I'm%20interested%20in%20the%20pilot%20program&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%20%0AMain%20use%20cases%3A%0ABest%20time%20to%20chat%3A%0A%0AThanks!"
-                  className="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full flex items-center justify-center gap-2"
+                <button
+                  onClick={() => openContactForm('pilot')}
+                  className="bg-[#1E3A4C] hover:bg-[#2C4A5E] text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full flex items-center justify-center gap-2"
                 >
                   <PieChart className="w-4 h-4" />
                   Run a free 30-day pilot — see your savings live
-                </a>
+                </button>
               </div>
 
               {/* Early Adopter CTA */}
@@ -830,6 +839,13 @@ export default function DatoadCalculator() {
           <p className="mt-1">Calculations based on actual workload distribution and model performance benchmarks.</p>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        formType={contactFormType}
+      />
     </div>
     </>
   );

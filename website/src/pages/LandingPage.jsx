@@ -39,7 +39,8 @@ export default function LandingPage() {
           className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-6 py-3 rounded-full font-semibold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all flex items-center gap-2 group"
         >
           <Calculator className="w-5 h-5" />
-          <span className="hidden sm:inline">Calculate Savings</span>
+          <span className="hidden sm:inline">💰 Calculate My Savings</span>
+          <span className="sm:hidden">💰 Calculate</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
@@ -71,34 +72,87 @@ export default function LandingPage() {
               to="/calculator"
               className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2"
             >
-              Calculate Your Savings
+              💰 Calculate My Savings
               <ArrowRight className="w-5 h-5" />
             </Link>
             <button
               onClick={() => openContactForm('demo')}
               className="bg-white text-[#1E3A4C] px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
-              Book a Demo
+              📞 Schedule 15-min Intro Call
             </button>
           </div>
 
-          {/* Pilot Program Call */}
-          <div className="max-w-2xl mx-auto bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-2xl p-6 shadow-lg">
-            <div className="text-center">
+          {/* Pilot Program Call + Quick Contact Form */}
+          <div className="max-w-2xl mx-auto bg-gradient-to-br from-[#4A9B9B]/10 to-[#7BC4BD]/10 border-2 border-[#4A9B9B]/30 rounded-2xl p-8 shadow-lg">
+            <div className="text-center mb-6">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#4A9B9B] to-[#7BC4BD] rounded-full text-white font-bold text-xl mb-3">
                 🚀
               </div>
-              <h3 className="text-lg font-bold text-[#1E3A4C] mb-2">
-                Looking for Pilot Partners
+              <h3 className="text-xl font-bold text-[#1E3A4C] mb-2">
+                Interested in a pilot? Fill out this quick form.
               </h3>
-              <p className="text-sm text-slate-600 mb-3">
+              <p className="text-sm text-slate-600 mb-1">
                 We're onboarding 2 companies this quarter for a <strong>free 30-day pilot</strong>.
-                Help us validate real-world savings and get early access to the platform.
               </p>
               <p className="text-xs text-slate-500">
                 Ideal for: Teams spending $10k+/month on LLM APIs
               </p>
             </div>
+
+            {/* Inline Contact Form */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = {
+                  company: formData.get('company'),
+                  spend: formData.get('spend'),
+                  email: formData.get('email')
+                };
+                const mailtoLink = `mailto:diegocastellanos@datoad.dev?subject=Pilot%20Program%20Interest%20-%20${encodeURIComponent(data.company)}&body=Company%3A%20${encodeURIComponent(data.company)}%0AMonthly%20LLM%20Spend%3A%20${encodeURIComponent(data.spend)}%0AEmail%3A%20${encodeURIComponent(data.email)}`;
+                window.location.href = mailtoLink;
+              }}
+              className="space-y-3"
+            >
+              <div>
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Company *"
+                  required
+                  className="w-full px-4 py-3 bg-white border-2 border-[#4A9B9B]/20 rounded-lg focus:border-[#4A9B9B] focus:outline-none text-[#1E3A4C] placeholder-slate-400"
+                />
+              </div>
+              <div>
+                <select
+                  name="spend"
+                  required
+                  className="w-full px-4 py-3 bg-white border-2 border-[#4A9B9B]/20 rounded-lg focus:border-[#4A9B9B] focus:outline-none text-[#1E3A4C]"
+                >
+                  <option value="">Monthly LLM Spend *</option>
+                  <option value="$5k-$10k">$5k-$10k</option>
+                  <option value="$10k-$50k">$10k-$50k</option>
+                  <option value="$50k-$100k">$50k-$100k</option>
+                  <option value="$100k+">$100k+</option>
+                </select>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email *"
+                  required
+                  className="w-full px-4 py-3 bg-white border-2 border-[#4A9B9B]/20 rounded-lg focus:border-[#4A9B9B] focus:outline-none text-[#1E3A4C] placeholder-slate-400"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105"
+              >
+                🚀 Submit Pilot Request
+              </button>
+            </form>
           </div>
         </div>
 
@@ -636,13 +690,13 @@ export default function LandingPage() {
               to="/calculator"
               className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
             >
-              Calculate Your Savings
+              💰 Calculate My Savings
             </Link>
             <button
               onClick={() => openContactForm('pilot')}
               className="bg-transparent text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-[#4A9B9B]"
             >
-              Request Pilot Access
+              🚀 Start Free 30-Day Pilot
             </button>
           </div>
 
@@ -693,7 +747,7 @@ export default function LandingPage() {
               diegocastellanos@datoad.dev
             </a>
             {' · '}
-            <a href="https://datoad.dev" className="text-[#4A9B9B] hover:underline font-medium">
+            <a href="https://datoad.dev" target="_blank" rel="noopener noreferrer" className="text-[#4A9B9B] hover:underline font-medium">
               datoad.dev
             </a>
           </p>

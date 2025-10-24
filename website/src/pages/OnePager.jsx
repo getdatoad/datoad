@@ -243,10 +243,10 @@ export default function OnePager() {
               href="mailto:diegocastellanos@datoad.dev?subject=I'm%20interested%20in%20the%20pilot%20program&body=Hi%20Diego%2C%0A%0AI'm%20interested%20in%20running%20a%20free%2030-day%20pilot%20with%20Datoad.%0A%0ACompany%3A%0AMonthly%20LLM%20spend%3A%0AMain%20use%20cases%3A%0A%0AThanks!"
               className="cta-button primary"
             >
-              Request Pilot Access →
+              🚀 Start Free 30-Day Pilot →
             </a>
             <Link to="/calculator" className="cta-button secondary">
-              Calculate Savings →
+              💰 Calculate My Savings →
             </Link>
           </div>
         </div>
@@ -304,6 +304,9 @@ export default function OnePager() {
                 <span>Azure</span>
               </div>
               <p className="footer-note">Provider-agnostic — optimize without vendor lock-in</p>
+              <p style={{ fontSize: '8px', color: '#64748B', marginTop: '8px', marginBottom: '4px' }}>
+                🔒 SOC2 Type II in progress · 🛡️ GDPR/CCPA compliant · 🔐 Zero data retention
+              </p>
               <p className="footer-copy">© 2025 Datoad, Inc. All rights reserved.</p>
             </div>
           </div>

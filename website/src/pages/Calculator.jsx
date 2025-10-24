@@ -808,15 +808,14 @@ export default function DatoadCalculator() {
                   onClick={() => openContactForm('demo')}
                   className="bg-gradient-to-r from-[#4A9B9B] to-[#7BC4BD] hover:shadow-lg text-white font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105 w-full block text-center"
                 >
-                  Schedule 15min Intro Call
+                  📞 Schedule 15-min Intro Call
                 </button>
 
                 <button
                   onClick={() => openContactForm('pilot')}
                   className="bg-[#1E3A4C] hover:bg-[#2C4A5E] text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full flex items-center justify-center gap-2"
                 >
-                  <PieChart className="w-4 h-4" />
-                  Run a free 30-day pilot — see your savings live
+                  🚀 Start Free 30-Day Pilot
                 </button>
               </div>
 
